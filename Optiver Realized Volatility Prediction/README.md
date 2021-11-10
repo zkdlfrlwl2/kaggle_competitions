@@ -14,7 +14,7 @@
 ### Model
 
 * LGBM
-* FCNN with skip connection
+* FCNN
 * Ensemble of above models
 
 
