@@ -77,12 +77,12 @@
 * `u_out` - the control input for the exploratory solenoid valve(배기 밸브). Either 0 or 1.
   * The second control input is a binary variable representing whether **the exploratory valve is open (1) or closed (0) to let air out.**
 * `pressure` - the **airway pressure**(기도 압력) measured in the respiratory circuit, measured in **cmH2O**(단위).
-* ![image-20210927142147039](C:\Users\swlee\AppData\Roaming\Typora\typora-user-images\image-20210927142147039.png)
-* ![image-20210927142929038](C:\Users\swlee\AppData\Roaming\Typora\typora-user-images\image-20210927142929038.png)
+* ![image-20210927142147039](./C:\Users\swlee\AppData\Roaming\Typora\typora-user-images\image-20210927142147039.png)
+* ![image-20210927142929038](./C:\Users\swlee\AppData\Roaming\Typora\typora-user-images\image-20210927142929038.png)
 
 
 
 ### Result
 
-![result](C:\Users\swlee\AppData\Roaming\Typora\typora-user-images\image-20211110111241668.png)
+![result](./C:\Users\swlee\AppData\Roaming\Typora\typora-user-images\image-20211110111241668.png)
 
