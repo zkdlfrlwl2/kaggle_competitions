@@ -1,4 +1,17 @@
 # Kaggle Competitions
+
+### My kaggle profile - 11/10/2021
+
+![image](https://user-images.githubusercontent.com/92927837/141052207-efedd15a-aacc-4a4a-b5d1-76f2fec5b264.png)
+
+* https://www.kaggle.com/seongwook93
+
+
+
+
+
+### List of competitions participated
+
 * SIIM-FISABIO-RSNA COVID-19 Detection 
 
   * Identify and localize COVID-19 abnormalities on chest radiographs
