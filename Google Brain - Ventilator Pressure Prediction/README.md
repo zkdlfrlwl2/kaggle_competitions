@@ -98,3 +98,11 @@
 * `pressure` - the **airway pressure**(기도 압력) measured in the respiratory circuit, measured in **cmH2O**(단위).
  ![image-20210927142147039](https://user-images.githubusercontent.com/92927837/141037426-81a3a78a-1e32-4ac9-93fc-5699b79ac6e0.png)
   ![image-20210927142147039](https://user-images.githubusercontent.com/92927837/141037535-44faf672-9308-4728-8d81-7e5e232dabce.png)
+* Reference
+  * https://www.kaggle.com/cdeotte/ensemble-folds-with-median-0-153
+  * https://www.kaggle.com/cdeotte/lstm-feature-importance
+  * https://www.kaggle.com/dlaststark/gb-vpp-pulp-fiction
+  * https://www.kaggle.com/cdeotte/rapids-knn-and-kmeans-0-600
+  * https://www.kaggle.com/marutama/eda-about-u-in
+  * https://www.kaggle.com/marutama/eda-about-time-step-and-u-out
+
