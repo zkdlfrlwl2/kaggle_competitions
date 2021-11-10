@@ -6,7 +6,7 @@
 
 * Based on time series data, predict target pressure  
 
-* **Chris Deotte Tips**
+* **Chris Deotte Tips list-up**
 
   * https://www.kaggle.com/cdeotte
 
