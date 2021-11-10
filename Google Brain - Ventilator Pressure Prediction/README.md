@@ -15,6 +15,12 @@
 
 
 
+### Result
+
+![result](https://user-images.githubusercontent.com/92927837/141037296-b0ffbb62-69b7-49c5-800b-ce88c7b1d1b5.png)
+
+
+
 ### Description
 
 * developing new methods for controlling mechanical ventilators is prohibitively expensive, even before reaching clinical trials. High-quality simulators could reduce this barrier.
@@ -79,10 +85,3 @@
 * `pressure` - the **airway pressure**(기도 압력) measured in the respiratory circuit, measured in **cmH2O**(단위).
  ![image-20210927142147039](https://user-images.githubusercontent.com/92927837/141037426-81a3a78a-1e32-4ac9-93fc-5699b79ac6e0.png)
  ![image-20210927142147039](https://user-images.githubusercontent.com/92927837/141037535-44faf672-9308-4728-8d81-7e5e232dabce.png)
-
-
-
-### Result
-
-![result](https://user-images.githubusercontent.com/92927837/141037296-b0ffbb62-69b7-49c5-800b-ce88c7b1d1b5.png)
-
