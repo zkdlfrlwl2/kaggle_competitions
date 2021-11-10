@@ -172,4 +172,5 @@
 * Reference
 
   * https://www.kaggle.com/jiashenliu/introduction-to-financial-concepts-and-data
+  * https://www.kaggle.com/tatudoug/stock-embedding-ffnn-my-features
 
