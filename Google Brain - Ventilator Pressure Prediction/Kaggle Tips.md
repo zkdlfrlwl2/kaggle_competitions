@@ -63,6 +63,47 @@
   * batch size를 512에서 32로 줄이면 epoch 당 16배 많은 gradient updates가 일어나므로 epoch 수를 줄일 수 있다. batch size 512 + epoch 300++ == batch size 32 epoch 70 속도 유사. plateau보다 cosine schedule가 더 효율적이라 epoch 수를 더 적게 가져가도 된다.
   
     
+
+
+* **14th solution**
+  
+  
+  * https://www.kaggle.com/c/ventilator-pressure-prediction/discussion/285513
+  * only LSTM
+  * Preprocess
+  
+    * Robust Scaler quantile-range=(10, 90)
+    * Takes the np.log1p of u_in
+  
+  * Target
+  
+    * Raw pressures and diff pressures
+  
+      * train['pressure_diff']=train.groupby(['breath_id'])['pressure'].diff().fillna(0)
+      * train['pressure_diff2']=train.groupby(['breath_id'])['pressure_diff'].shift(-1).fillna(0)
+  
+  * Loss
+  
+    * MAE
+  
+  * Keras
+  
+    * use linear activation in last layer
+    * use 10 ~ 16 folds, 4 layers bidirectional LSTM
+    * Add CNN
+  
+  * pytorch
+  
+    * Scheduler: CosineAnnealingWarmupRestarts
+    * multi-task targets
+    * 5 layers bidirectional LSTM
+  
+  * Postprocess
+  
+    * median and round
+  
+  
+    
   
     
   
