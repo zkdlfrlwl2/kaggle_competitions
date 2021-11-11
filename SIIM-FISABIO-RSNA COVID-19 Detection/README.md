@@ -12,7 +12,19 @@
 
 * Efficientnetb7
 
+  * Data augmentation
+    * tf.image.random_flip_up_down
+    * tf.image.random_flip_left_right
+    * Mixup
+    * Cutmix
+    * Pseudo labeling
+
+  * lr schedule
+    * LR ramp up
+
 * yolov5
+
+* Weighted ensemble
 
   
 
