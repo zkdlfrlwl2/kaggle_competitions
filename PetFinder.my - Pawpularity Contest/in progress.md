@@ -9,12 +9,14 @@
   * Ensemble: 10-fold mean
   * Regression
   * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
-  * Adam
+  * Adam: lr=1e-5
   * CosineAnnealingWarmRestarts
   * Epochs: 20
   * Batch size: 4
   * Image size: 224
-  * 1fold valid rmse: 16.35
+  * 1fold result
+    * base valid rmse -> 16.35 / 18.57
+    * from rmse loss to bce loss valid rmse -> 
 
 
 
