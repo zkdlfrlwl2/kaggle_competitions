@@ -4,6 +4,8 @@
 
 한 달에 Model 1개 목표로 진행 
 
+​	1. swin transformer
+
 * Base model
   * Model: 'swin_base_patch4_window7_224' in the timm library
   * Ensemble: 10-fold mean
@@ -16,6 +18,10 @@
   * Image size: 224
   * 1fold result
     * base valid rmse -> 16.35 / 18.57
+    * add selu after dense1 layer -> 16.99
+    * remove dropout -> 
+    * batch size 8 -> 
+    * batch size 16 -> 
     * from rmse loss to bce loss valid rmse -> 
 
 
