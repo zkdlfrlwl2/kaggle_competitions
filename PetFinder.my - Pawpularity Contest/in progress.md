@@ -1,6 +1,6 @@
-| Model |  CV  | Public LB | Private LB |
-| :---: | :--: | :-------: | :--------: |
-| Base  |      |           |            |
+| Model |  CV   | Public LB | Private LB |
+| :---: | :---: | :-------: | :--------: |
+| Base  | 16.49 |   18.49   |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -13,15 +13,17 @@
   * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
   * Adam: lr=1e-5
   * CosineAnnealingWarmRestarts
+  * Early stopping patience: 3
   * Epochs: 20
   * Batch size: 4
   * Image size: 224
   * 1fold result
-    * base valid rmse -> 16.35 / 18.57
-    * add selu after dense1 layer -> 16.99
-    * remove dropout -> 
-    * batch size 8 -> 
-    * batch size 16 -> 
+    * base valid rmse & batch size 4 -> 16.35 / 18.57
+    * add selu after dense1 layer & batch size 4 -> 16.99
+    * remove dropout & batch size 4 -> 16.28 / 18.58 = **select**
+    * remove dropout & batch size 8 -> 17.65
+    * remove dropout & batch size 16 -> 18.01
+    * remove dropout & swin large patch4 window7 224 & batch size 4 -> 16.50
     * from rmse loss to bce loss valid rmse -> 
 
 
