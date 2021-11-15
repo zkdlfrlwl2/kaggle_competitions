@@ -1,6 +1,7 @@
 |      Model      |  CV   | Public LB | Private LB |
 | :-------------: | :---: | :-------: | :--------: |
 | Base - 10 folds | 16.49 |   18.49   |            |
+| ver1 - 10folds  |       |           |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -24,6 +25,21 @@
     * remove dropout & batch size 8 -> 17.65
     * remove dropout & batch size 16 -> 18.01
     * remove dropout & swin large patch4 window7 224 & batch size 4 -> 16.50
+
+
+
+* ver1 model
+  * Model: 'swin_small_patch4_window7_224' in the timm library
+  * Ensemble: 10-fold mean
+  * Regression
+  * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
+  * Adam: lr=1e-5
+  * CosineAnnealingWarmRestarts
+  * Early stopping patience: 5
+  * Epochs: 20
+  * Batch size: 4
+  * Image size: 224
+  * **final dense layer의 bias를 38.0으로 초기화**
 
 
 
