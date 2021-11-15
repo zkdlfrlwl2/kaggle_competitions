@@ -1,6 +1,6 @@
-| Model |  CV   | Public LB | Private LB |
-| :---: | :---: | :-------: | :--------: |
-| Base  | 16.49 |   18.49   |            |
+|      Model      |  CV   | Public LB | Private LB |
+| :-------------: | :---: | :-------: | :--------: |
+| Base - 10 folds | 16.49 |   18.49   |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -24,22 +24,6 @@
     * remove dropout & batch size 8 -> 17.65
     * remove dropout & batch size 16 -> 18.01
     * remove dropout & swin large patch4 window7 224 & batch size 4 -> 16.50
-    * from rmse loss to bce loss valid rmse -> 
-
-
-
-
-
-* try something
-    * add rapids svr head
-    * add metadata input layer
-    * try other lr scheduler
-    * adjust epoch, batch size, lr
-    * add other augmentation
-    * use pet-centric cropped dataset 
-    * use GANs for additinal data
-
-
 
 
 
