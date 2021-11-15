@@ -10,7 +10,7 @@
   * 'swin_base_patch4_window7_224'
 
     * 추가 전 1fold CV 16.28 (best val)
-    * 추가 후 1fold CV 16.17x (best val)
+    * 추가 후 1fold CV 8.69 (last train) / 15.982 (best val) / pb 1fold 18.871
     
   * 'swin_large_patch4_window7_224'
   
@@ -29,8 +29,13 @@
   * 적용 1fold CV
     * Conv1d 적용 1fold CV
     * Conv1d 미적용 1fold CV
-
   * 미적용 1fold CV
+  
+* fold split 방식을 바꿔보자
+
+  * kfold
+  * stkfold
+
 
 
 * add rapids svr head - 5 
