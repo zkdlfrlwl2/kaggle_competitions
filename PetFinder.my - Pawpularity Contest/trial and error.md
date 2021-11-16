@@ -5,10 +5,12 @@
     self.dense2.bias.data = torch.nn.Parameter(
         torch.Tensor([38.0])
     )
+    
+    es patience=5
     ```
-
+    
   * 'swin_base_patch4_window7_224'
-
+  
     * 추가 전 1fold CV 16.28 (best val)
     * 추가 후 1fold CV 8.69 (last train) / 15.982 (best val) / pb 1fold 18.871
     
@@ -23,13 +25,65 @@
   * 'swin_tiny_patch4_window7_224'
   
     * 추가 후 1fold CV 11.3 (last train) / 16.76 (best val)
+    
+  * 'swin_base_patch4_window7_224_in22k'
+  
+    * 추가 후 1fold CV
+    * 1fold 소요 시간
+  
+  * 'swin_large_patch4_window7_224_in22k'
+  
+    * 추가 후 1fold CV
+    * 1fold 소요 시간
+  
+  * 'swin_base_patch4_window12_384'
+  
+    * 추가 후 1fold CV
+    * 1fold 소요 시간
+  
+  * 'swin_large_patch4_window12_384'
+  
+    * 추가 후 1fold CV
+    * 1fold 소요 시간
+  
+  * 'swin_base_patch4_window12_384_in22k'
+  
+    * 추가 후 1fold CV
+    * 1fold 소요 시간
+  
+  * 'swin_large_patch4_window12_384_in22k'
+  
+    * 추가 후 1fold CV
+    * 1fold 소요 시간
   
 * meta data 유무
 
-  * 적용 1fold CV
-    * Conv1d 적용 1fold CV
-    * Conv1d 미적용 1fold CV
+  * 적용 1fold CV 
+    * 8.69 (last train) / 15.982 (best val) / pb 1fold 18.871
   * 미적용 1fold CV
+    * 16.264 (best val)
+  * transformer 입력에 넣기 전, image와 feature concat 1fold CV
+    * ![image](https://user-images.githubusercontent.com/92927837/141882804-d3a398d2-9371-4b83-b2b0-593a6ce7a1ac.png)
+    * 보류 
+      * RuntimeError: Sizes of tensors must match except in dimension 0. Expected size 3 but got size 1 for tensor number 1 in the list. -> meta도 3차원이어야하나본데
+  
+* try augmentation
+
+  * base - HorizontalFlip, VerticalFlip
+    * 'swin_base_patch4_window7_224'
+    * 1fold CV: 16.094 (best val)
+  
+  * base + RandomBrightnessContrast
+    * 'swin_base_patch4_window7_224'
+    * 1fold CV: 16.254 (best val)
+  
+  * base + HueSaturationValue
+    * 'swin_base_patch4_window7_224'
+    * 1 fold CV: 16.119 (best val)
+  
+  * All add aug
+    * 'swin_large_patch4_window12_384_in22k'
+    * 1 fold CV: 15.869 (best val) / 18.16462 (pb score) 
   
 * fold split 방식을 바꿔보자
 
