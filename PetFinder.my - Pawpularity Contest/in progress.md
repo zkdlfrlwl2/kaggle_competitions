@@ -1,11 +1,9 @@
-|      Model      |  CV   | Public LB | Private LB |
-| :-------------: | :---: | :-------: | :--------: |
-| Base - 10 folds | 16.49 |   18.49   |            |
-| ver1 - 10folds  |       |           |            |
+|      Model      |   CV   | Public LB | Private LB |
+| :-------------: | :----: | :-------: | :--------: |
+| Base - 10 folds | 16.49  |   18.49   |            |
+| ver1 - 10folds  | 16.198 | 18.10953  |            |
 
 한 달에 Model 1개 목표로 진행 
-
-​	1. swin transformer
 
 * Base model
   * Model: 'swin_base_patch4_window7_224' in the timm library
