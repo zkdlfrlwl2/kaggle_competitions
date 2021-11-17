@@ -2,15 +2,18 @@
 | :-------------: | :----: | :-------: | :--------: |
 | Base - 10 folds | 16.49  |   18.49   |            |
 | ver1 - 10folds  | 16.198 | 18.10953  |            |
+| ver2 - 10folds  |        |           |            |
+| ver3 - 10folds  |        |           |            |
 
 한 달에 Model 1개 목표로 진행 
 
 * Base model
   * Model: 'swin_base_patch4_window7_224' in the timm library
   * Ensemble: 10-fold mean
-  * Regression
+  * Regression RMSE
   * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
   * Adam: lr=1e-5
+  * head_out=128
   * CosineAnnealingWarmRestarts
   * Early stopping patience: 3
   * Epochs: 20
@@ -29,15 +32,39 @@
 * ver1 model
   * Model: 'swin_small_patch4_window7_224' in the timm library
   * Ensemble: 10-fold mean
-  * Regression
+  * Regression RMSE
   * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
   * Adam: lr=1e-5
+  * head_out=192
   * CosineAnnealingWarmRestarts
   * Early stopping patience: 5
   * Epochs: 20
   * Batch size: 4
   * Image size: 224
   * **final dense layer의 bias를 38.0으로 초기화**
+
+
+
+* ver 2 model
+  * Model:'swin_large_patch4_window12_384' in the timm library
+  * Ensemble: 10-fold mean
+  * Regression RMSE
+  * Augmentation: All add aug
+  * Adam: lr=1e-5
+  * head_out=256
+  * lr scheduler: 
+  * Early stopping patience: 3
+  * Epochs: 20
+  * Batch size: 4
+  * Image size: 384
+  * final dense layer의 bias를 38.0으로 초기화
+
+
+
+* ver 3 model
+  * ver 2와 config는 동일, 단지 model만 'swin_large_patch4_window12_384_in22k'로 변경
+
+
 
 
 
