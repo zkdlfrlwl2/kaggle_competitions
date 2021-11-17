@@ -74,6 +74,7 @@
   * All add aug
     * 'swin_large_patch4_window12_384_in22k'
     * 1 fold of 10 folds CV: **15.869 (best val) / 18.16462 (pb score)** 
+      * CosineAnnealingLR 1fold CV: 15.843
     * 1 fold of 5 folds CV:  15.917 (best val) 
   
 * lr scheduler 변경 시도
@@ -91,8 +92,8 @@
   
   * CosineAnnealingLR - headout 192
   
-    * T_max=10, 
-    * T_max=5, 
+    * T_max=10, 15.886
+    * T_max=5, 15.987
   
 * swin transformer output unit size 변경 시도
 
