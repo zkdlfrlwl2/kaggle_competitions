@@ -140,7 +140,7 @@ step 7에서 attention 메커니즘은 영어 번역을 생성하려 할 때, **
 
 이제 지금까지 나온 모든 과정들을 합친 다음 영상을 보고 어떻게 attention이 작동하는지 정리해보겠습니다.
 
-1. attention 모델에서의 decoder RNN은 <END> 와 추가로 initial decoder hidden state를 입력받습니다.
+1. attention 모델에서의 decoder RNN은 END와 추가로 initial decoder hidden state를 입력받습니다.
 2. decoder RNN은 두 개의 입력을 가지고 새로운 hidden state 벡터를 출력합니다 (h4). RNN의 출력 자체는 사용되지 않고 버려집니다.
 3. Attention 과정: encoder의 hidden state 모음과 decoder의 hidden state h4 벡터를 이용하여 그 step에 해당하는 context 벡터 C4를 계산합니다.
 4. h4와 C4를 하나의 벡터로 concatenate 합니다.
