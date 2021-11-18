@@ -3,7 +3,6 @@
 | Base - 10 folds | 16.49  |   18.49   |            |
 | ver1 - 10folds  | 16.198 | 18.10953  |            |
 | ver2 - 10folds  |        |           |            |
-| ver3 - 10folds  |        |           |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -47,12 +46,13 @@
 
 * ver 2 model
   * Model: 'swin_large_patch4_window12_384_in22k' in the timm library
+  * remove dup and average target
   * Ensemble: 10-fold mean
   * Regression RMSE
   * Augmentation: All add aug
   * Adam: lr=1e-5
   * head_out=192
-  * lr scheduler: CosineAnnealingLR 
+  * lr scheduler: CosineAnnealingWarmRestarts
   * Early stopping patience: 3
   * Epochs: 5
   * Batch size: 4
@@ -60,11 +60,6 @@
   * final dense layer의 bias를 38.0으로 초기화
 
 
-
-
-
-* ver 3 model
-  * ver 2 model cofing와 동일, model만  'swin_large_patch4_window12_384'
 
 
 
