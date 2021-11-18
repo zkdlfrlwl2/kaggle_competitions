@@ -74,6 +74,8 @@
   * All add aug
     * 'swin_large_patch4_window12_384_in22k'
     * 1 fold of 10 folds CV: **15.869 (best val) / 18.16462 (pb score)** 
+      * remove dup and average target
+        * 
       * CosineAnnealingLR 1fold CV: 15.843
     * 1 fold of 5 folds CV:  15.917 (best val) 
   
@@ -102,19 +104,33 @@
 
   * 192 -> 256
 
-* fold split 방식을 바꿔보자
-
-  * kfold
-  * stkfold
+  
 
 * train dataset과 test dataset의 분포가 다르다면 어떻게 학습시켜야 할까
 
-* add rapids svr head
+* **add rapids svr head**
+
 * add metadata input layer 
+
 * adjust epoch, batch size, lr, folds, lr scheduler 
-* add other augmentation 
-* use GANs for additinal data & aux loss
+
+* **add other augmentation** 
+
+* **use GANs for additinal data & aux loss**
+  
   * GAN으로 생성한 이미지를 분류하게 CNN attention으로 
-* 지금 현재 training dataset에 강아지냐 고양이냐의 label을 하나 더 추가해서 aux loss로 사용한다면 ?
+  
+* 지금 현재 training dataset에 강아지냐 고양이냐의 label을 하나 더 추가해서 **aux loss로 사용**한다면 ?
   * test set이 노이즈라서 test set까지 labeling하기는 힘들고 training phase때만 aux loss로 학습하고 infer에는 aux head 없어도 상관없나 ?  함 시도해봐야겠다
+  
 * from rmse loss to bce loss 
+
+
+
+* 유사한 이미지가 있으나 target 값이 다르다
+  * https://www.kaggle.com/showeed/annoy-similar-images-ver2?scriptVersionId=79322129
+  * 유사한 이미지 중 하나를 없애고 target값을 두 값의 평균으로 치환해서 다시 학습을 해본다면 ?
+  * 여러 discussion에서 지적했듯이 target 값인 pawpularity에 대해서 불만이 많다.
+    * 동일한 이미지에 target값이 다른 이유를 뒷받침 해줄 데이터가 부족하다.
+    * 동일한 프로필 사진이라도 올린 시간이 달라서 target값이 달라졌을지도 모르는데 그런 부가적인 정보가 되게 부족하다. 업로드 시간, 품종, 나이, 성별 등등
+    * 그나마 위안이 되는 건 데이터가 아주 적지는 않다는 것
