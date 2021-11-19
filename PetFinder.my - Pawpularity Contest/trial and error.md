@@ -187,7 +187,7 @@
     * data aug all 1fold CV **15.742**, 1h 18m 50s
   * 'swin_large_patch4_window12_384_in22k'
     * data aug base 1fold CV 
-    * data aug all 1fold CV **15.439, public lb 18.54264 **, 2h 4m
+    * data aug all 1fold CV **15.439, public lb 18.54264**, 2h 4m
   * 15.668 - 18.436 vs 15.869 - 18.165
     * CV랑 LB 점수랑 비례하지가 않는다.
     * batch size가 지나치게 작아서 그런걸까 
