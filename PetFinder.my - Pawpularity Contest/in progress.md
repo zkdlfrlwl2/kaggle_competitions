@@ -47,18 +47,18 @@
 
 
 * ver 2 model
-  * Model: **'swin_large_patch4_window12_384_in22k'** in the timm library
+  * Model: **'swin_base_patch4_window7_224_in22k'** in the timm library
   * **remove dup and average target**
   * Ensemble: 10-fold mean
   * Regression RMSE
-  * Augmentation: **All add aug**
+  * Augmentation: base aug
   * Adam: lr=1e-5
   * head_out=192
   * lr scheduler: CosineAnnealingWarmRestarts
   * Early stopping patience: 3
-  * Epochs: 5
+  * Epochs: 10
   * Batch size: 4
-  * Image size: 384
+  * Image size: 224
   * final dense layer의 bias를 38.0으로 초기화
 
 
