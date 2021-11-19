@@ -7,8 +7,9 @@
 한 달에 Model 1개 목표로 진행 
 
 * Base model
-  * Model: 'swin_base_patch4_window7_224' in the timm library
+  * Model: **'swin_base_patch4_window7_224'** in the timm library
   * Ensemble: 10-fold mean
+  * Augmentation: base aug
   * Regression RMSE
   * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
   * Adam: lr=1e-5
@@ -29,7 +30,8 @@
 
 
 * ver1 model
-  * Model: 'swin_small_patch4_window7_224' in the timm library
+  * Model: **'swin_small_patch4_window7_224'** in the timm library
+  * Augmentation: base aug
   * Ensemble: 10-fold mean
   * Regression RMSE
   * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
@@ -45,11 +47,11 @@
 
 
 * ver 2 model
-  * Model: 'swin_large_patch4_window12_384_in22k' in the timm library
-  * remove dup and average target
+  * Model: **'swin_large_patch4_window12_384_in22k'** in the timm library
+  * **remove dup and average target**
   * Ensemble: 10-fold mean
   * Regression RMSE
-  * Augmentation: All add aug
+  * Augmentation: **All add aug**
   * Adam: lr=1e-5
   * head_out=192
   * lr scheduler: CosineAnnealingWarmRestarts
