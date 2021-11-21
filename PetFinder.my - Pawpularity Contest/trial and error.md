@@ -186,7 +186,7 @@
     * data aug base 1fold CV **15.758**, 1h 16m 6s
     * data aug all 1fold CV **15.742**, 1h 18m 50s
   * 'swin_large_patch4_window12_384_in22k'
-    * data aug base 1fold CV 
+    * data aug base 1fold CV 15.551, 2h 4m
     * data aug all 1fold CV **15.439, public lb 18.54264**, 2h 4m
   * 15.668 - 18.436 vs 15.869 - 18.165
     * CV랑 LB 점수랑 비례하지가 않는다.
@@ -206,15 +206,16 @@
 ​       
 
 * **시도해볼것들**
+  * **bias 38 추가하는거 없애자. test dataset target 평균값이 38이라는 보장이 없으니**
   * lr scheduler 제거 -> lr 1e-5 고정 
   * swin 384 model은 5fold로, 224 model은 10fold로
-  * add rapids svr head
+  * add rapids svr head - 4
   * add other augmentation
-  * from rmse loss to bce loss 
+  * from rmse loss to bce loss - 2
   * use GANs for additinal data & aux loss
-  * 강아지냐 고양이냐의 label을 하나 더 추가해서 aux loss로 사용
-  * head에 attention layer 추가 해보기
-  * meta data 제외하고 학습 시켜보기
+  * 강아지냐 고양이냐의 label을 하나 더 추가해서 aux loss로 사용 - 5
+  * head에 attention layer 추가 해보기 - 3
+  * meta data 제외하고 학습 시켜보기 - 1
   * 각 만드는 모델마다 oof도 같이 만들어서 실제 target 값과의 hist 및 평균값 비교해보기
     * https://www.kaggle.com/kishalmandal/eda-of-rapids-svr-actual-vs-pred-comparison
 
