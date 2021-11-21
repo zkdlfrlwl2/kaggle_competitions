@@ -2,7 +2,9 @@
 | :-------------: | :----: | :-------: | :--------: |
 | Base - 10 folds | 16.49  |   18.49   |            |
 | ver1 - 10folds  | 16.198 | 18.10953  |            |
-| ver2 - 10folds  |        |           |            |
+| ver2 - 10folds  | 16.119 | 18.30072  |            |
+| ver3 - 10folds  | 16.166 | 18.24908  |            |
+| ver4 - 10folds  | 16.514 | 18.40091  |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -62,6 +64,23 @@
   * final dense layer의 bias를 38.0으로 초기화
 
 
+
+* ver 3 model
+  * ver 2 model cofig와 동일
+  * 다른점
+    * **'swin_large_patch4_window7_224_in22k'**
+    *  all aug
+    * final dense layer bias 0으로 초기화 
+
+
+
+* ver 4 model
+  * ver1 model과 config 동일
+    *  **'swin_small_patch4_window7_224'**
+  * 다른점
+    * **final dense layer bias 0으로 초기화** 
+    * **remove dup and average target**
+    * Early stopping patience: 3
 
 
 
