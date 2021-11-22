@@ -219,3 +219,37 @@
   * 각 만드는 모델마다 oof도 같이 만들어서 실제 target 값과의 hist 및 평균값 비교해보기
     * https://www.kaggle.com/kishalmandal/eda-of-rapids-svr-actual-vs-pred-comparison
 
+
+
+---------------------------------
+
+
+
+#### 2021 - 11 - 22 ~ 26
+
+* ver 4 model에서 meta data 제외하고 1fold만 학습 시켜서 제출해보기
+
+  * 1fold CV 16.147 / Public LB 18.95612
+
+  * preds paw about 12 ~ 14 - 노이즈 이미지에 대한 예측값
+
+    * 이건 아마도 1fold에 속해 있는 training dataset의 값이 저정도라는 소리겠지.
+
+      ![image](https://user-images.githubusercontent.com/92927837/142787579-6f3cbdbe-bcf5-4341-8307-728208a08c87.png)
+
+      * **확인해보니 12 ~ 14가 아니고 평균은 38 정도임**
+      * 앞으로 드러난 test dataset이 단순 noise 이미지라 유추할 수가 없네.
+
+* 각 모델 별 oof vs fold target 분포 비교 해보기
+
+  * 20 ~ 80 값만 학습되는 것 같음
+
+  * 0 ~ 20, 80 ~ 100 target 값은 전혀 예측을 못함 
+
+    <img src="https://user-images.githubusercontent.com/92927837/142796486-a9425053-8212-446b-8dbd-1da31d9d4ae5.png" alt="image" style="zoom:80%;" />
+
+    * 중앙으로 압축된 느낌
+
+* 학습 데이터에 meta data 추가하기
+
+  * dog or cat label
