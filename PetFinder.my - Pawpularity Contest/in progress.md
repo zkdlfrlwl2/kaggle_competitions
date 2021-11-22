@@ -5,6 +5,7 @@
 | ver2 - 10folds  | 16.119 | 18.30072  |            |
 | ver3 - 10folds  | 16.166 | 18.24908  |            |
 | ver4 - 10folds  | 16.514 | 18.40091  |            |
+| ver5 - 10folds  |        |           |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -38,7 +39,7 @@
   * Regression RMSE
   * Augmentation: Resize, HorizontalFlip, VerticalFlip, Normalize
   * Adam: lr=1e-5
-  * head_out=192
+  * head_out=128
   * CosineAnnealingWarmRestarts
   * Early stopping patience: 5
   * Epochs: 20
@@ -81,8 +82,18 @@
     * **final dense layer bias 0으로 초기화** 
     * **remove dup and average target**
     * Early stopping patience: 3
+    * head_out=192
 
 
+
+* ver 5 model
+  * ver 4 model과 config 동일
+    * **'swin_small_patch4_window7_224'**
+  * 다른점
+    * meta data 없이 학습 진행
+      * meda data와 target 간의 상관 관계가 없음
+      * 결국 noise
+    * dog or cat 분류 loss를 추가 (aux loss)
 
 
 
