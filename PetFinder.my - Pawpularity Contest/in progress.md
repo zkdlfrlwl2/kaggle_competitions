@@ -1,11 +1,11 @@
-|      Model      |   CV   | Public LB | Private LB |
-| :-------------: | :----: | :-------: | :--------: |
-| Base - 10 folds | 16.49  |   18.49   |            |
-| ver1 - 10folds  | 16.198 | 18.10953  |            |
-| ver2 - 10folds  | 16.119 | 18.30072  |            |
-| ver3 - 10folds  | 16.166 | 18.24908  |            |
-| ver4 - 10folds  | 16.514 | 18.40091  |            |
-| ver5 - 10folds  |        |           |            |
+|      Model      |    CV    | Public LB | Private LB |
+| :-------------: | :------: | :-------: | :--------: |
+| Base - 10 folds | 18.35465 |   18.49   |            |
+| ver1 - 10folds  | 18.02539 | 18.10953  |            |
+| ver2 - 10folds  | 17.94588 | 18.30072  |            |
+| ver3 - 10folds  | 18.01586 | 18.24908  |            |
+| ver4 - 10folds  | 18.35333 | 18.40091  |            |
+| ver5 - 10folds  |          |           |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -22,13 +22,8 @@
   * Epochs: 20
   * Batch size: 4
   * Image size: 224
-  * 1fold result
-    * base valid rmse & batch size 4 -> 16.35 / 18.57
-    * add selu after dense1 layer & batch size 4 -> 16.99
-    * remove dropout & batch size 4 -> 16.28 / 18.58 = **select**
-    * remove dropout & batch size 8 -> 17.65
-    * remove dropout & batch size 16 -> 18.01
-    * remove dropout & swin large patch4 window7 224 & batch size 4 -> 16.50
+  * 1 fold cv is  18.06551
+  * mean of std oof / target:  0.55
 
 
 
@@ -46,6 +41,8 @@
   * Batch size: 4
   * Image size: 224
   * **final dense layer의 bias를 38.0으로 초기화**
+  * 1 fold cv is  17.72005
+  * mean of std oof / target:  0.53
 
 
 
@@ -63,6 +60,8 @@
   * Batch size: 4
   * Image size: 224
   * final dense layer의 bias를 38.0으로 초기화
+  * 1 fold cv is  17.73151
+  * mean of std oof / target:  0.56
 
 
 
@@ -72,6 +71,8 @@
     * **'swin_large_patch4_window7_224_in22k'**
     *  all aug
     * final dense layer bias 0으로 초기화 
+  * fold cv is  17.77913
+  * mean of std oof / target:  0.57
 
 
 
@@ -83,13 +84,15 @@
     * **remove dup and average target**
     * Early stopping patience: 3
     * head_out=192
+  * 1 fold cv is  18.71113
+  * mean of std oof / target:  0.55
 
 
 
 * ver 5 model
-  * ver 4 model과 config 동일
-    * **'swin_small_patch4_window7_224'**
-  * 다른점
+  * ver 4 model과 다른점
+    * **'swin_base_patch4_window7_224_in22k'**
+    * **final dense layer의 bias를 38.0으로 초기화**
     * meta data 없이 학습 진행
       * meda data와 target 간의 상관 관계가 없음
       * 결국 noise
