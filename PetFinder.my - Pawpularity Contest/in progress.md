@@ -91,11 +91,7 @@
 
 * ver 5 model
   * ver 4 model과 다른점
-    * **'swin_base_patch4_window7_224_in22k'**
-    * **final dense layer의 bias를 38.0으로 초기화**
-    * meta data 없이 학습 진행
-      * meda data와 target 간의 상관 관계가 없음
-      * 결국 noise
+    * **'swin_large_patch4_window7_224_in22k'**
     * dog or cat 분류 loss를 추가 (aux loss)
 
 
