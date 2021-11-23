@@ -285,7 +285,9 @@
   * init 38.0, meta data = 0
     * 1 fold cv: 18.47227, 2 fold cv: 18.69408
   * init 0.0, meta data = 0
+    * 1 fold cv: 18.326, 2 fold cv: 19.37944
   * init 38.0, meta data = 12
+    * 1 fold cv: 19.07274, 2 fold cv: 18.45164
   * init 0.0, meta data = 12
 
 * 학습 데이터에 target 추가
