@@ -242,14 +242,53 @@
 
 * 각 모델 별 oof vs fold target 분포 비교 해보기
 
+  * https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/289790
+
   * 20 ~ 80 값만 학습되는 것 같음
 
   * 0 ~ 20, 80 ~ 100 target 값은 전혀 예측을 못함 
 
-    <img src="https://user-images.githubusercontent.com/92927837/142796486-a9425053-8212-446b-8dbd-1da31d9d4ae5.png" alt="image" style="zoom:80%;" />
+    ![image](https://i.ibb.co/H2pv0rS/142796486-a9425053-8212-446b-8dbd-1da31d9d4ae5.png)
 
     * 중앙으로 압축된 느낌
 
-* 학습 데이터에 meta data 추가하기
+* 주최자 측에서 제안한 loss & metric이라 하더라도 cv와 lb의 상관관계가 안보이면 다른 loss & metric을 찾아서라도 상관관계를 linear하게 맞추는게 맞나 ? 
+
+  * maybe yes
+
+* 모든 회귀는 평균으로 돌아가려는 습성이 있다 ? 
+
+  * oof std와 target std를 나눠서 0.6 이상이면 그래도 training data에 useful signal이 있다는 소리
+  * 모든 회귀 모델이 완벽하지 않아서 생기는 문제 ? 
+
+* bias를 38.0으로 초기화하는 건 단순히 수렴 속도를 빠르게 해주는 것 이외에는 없는 건가 ..
+
+  * overfit과는 상관없는건가 ..
+  * 이번 대회에서 사용해보고 최종 결산 때 overfit이 심하면 다음에는 사용 안하는 걸로 
+
+* **중요**
+
+  * CV 계산 시, batch 별 -> fold 별로 변경 - **完** 
+  * tez -> only pytorch 코드로 변경
+    * Loss 계산법 고려 필요 
+    * BCE Loss 적용 
+  * CV 계산법 변경 후 batch size 조절 필요, 현재 4 - RAM 용량 제한 하에서 - 
+  * 모델 평가 시, 1fold에서 나아가 추가로 2 fold 결과 체크 필요 - **完** 
+  * regression coefficient 란
+  * pearson correlation coefficient 란
+  * correlation coefficient 란
+  * z score 란
+
+* init bias and original meta data 비교
+
+  * model: swin_base_patch4_window7_224_in22k
+  * init 38.0, meta data = 0
+    * 1 fold cv: 18.47227, 2 fold cv: 18.69408
+  * init 0.0, meta data = 0
+  * init 38.0, meta data = 12
+  * init 0.0, meta data = 12
+
+* 학습 데이터에 target 추가
 
   * dog or cat label
+
