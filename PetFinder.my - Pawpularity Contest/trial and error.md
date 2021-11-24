@@ -206,17 +206,15 @@
 ​       
 
 * **시도해볼것들**
-  * **bias 38 추가하는거 없애자. test dataset target 평균값이 38이라는 보장이 없으니**
-  * lr scheduler 제거 -> lr 1e-5 고정 
   * swin 384 model은 5fold로, 224 model은 10fold로
   * add rapids svr head - 4
-  * add other augmentation
-  * from rmse loss to bce loss - 2
+  * add other augmentation - **完** 
+  * from rmse loss to bce loss - 2 - **完** 
   * use GANs for additinal data & aux loss
   * 강아지냐 고양이냐의 label을 하나 더 추가해서 aux loss로 사용 - 5
   * head에 attention layer 추가 해보기 - 3
-  * meta data 제외하고 학습 시켜보기 - 1
-  * 각 만드는 모델마다 oof도 같이 만들어서 실제 target 값과의 hist 및 평균값 비교해보기
+  * meta data 제외하고 학습 시켜보기 - 1 - **完** 
+  * 각 만드는 모델마다 oof도 같이 만들어서 실제 target 값과의 hist 및 평균값 비교해보기 - **完** 
     * https://www.kaggle.com/kishalmandal/eda-of-rapids-svr-actual-vs-pred-comparison
 
 
@@ -269,26 +267,103 @@
 * **중요**
 
   * CV 계산 시, batch 별 -> fold 별로 변경 - **完** 
+
   * tez -> only pytorch 코드로 변경
     * Loss 계산법 고려 필요 
-    * BCE Loss 적용 
+    * BCE Loss 적용 - **完** 
+    
   * CV 계산법 변경 후 batch size 조절 필요, 현재 4 - RAM 용량 제한 하에서 - 
-  * 모델 평가 시, 1fold에서 나아가 추가로 2 fold 결과 체크 필요 - **完** 
-  * regression coefficient 란
-  * pearson correlation coefficient 란
-  * correlation coefficient 란
-  * z score 란
 
-* init bias and original meta data 비교
+  * 모델 평가 시, 1fold에서 나아가 추가로 2 fold 결과 체크 필요 - **完** 
+
+    
+
+* init bias and original meta data 비교 - Google Colab Pro
 
   * model: swin_base_patch4_window7_224_in22k
   * init 38.0, meta data = 0
-    * 1 fold cv: 18.47227, 2 fold cv: 18.69408
+    * 1 fold cv: 18.35615, 2 fold cv: 18.93261
   * init 0.0, meta data = 0
-    * 1 fold cv: 18.326, 2 fold cv: 19.37944
+    * 1 fold cv: 18.99869, 2 fold cv: 18.91864
   * init 38.0, meta data = 12
     * 1 fold cv: 19.07274, 2 fold cv: 18.45164
   * init 0.0, meta data = 12
+    * 1 fold cv: 18.59144, 2 fold cv: 19.15761
+  * meta data가 target하고 상관관계가 없어서 그런지 완전히 noise 취급인가보네 
+  * **init 38.0, meta data = 0, RandomResizedCrop**
+    * 1 fold cv: 18.00733, 2 fold cv: 18.36872
+  * init 0.0, meta data = 0, RandomResizedCrop, target.diff().abs()
+    * loss = target * 0.6 + target.diff.abs * 0.4
+      * d
+    * loss = target * 0.8 + target.diff.abs * 0.2
+      * d
+
+
+
+* From MSE to BCE - Kaggle Notebook
+
+  * 수정한 부분
+
+    * ```python
+      def __getitem__(self, item): # From class PawpularDataset
+              image = cv2.imread(self.image_paths[item])
+              image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+              
+              if self.augmentations is not None:
+                  augmented = self.augmentations(image=image)
+                  image = augmented["image"]
+              
+              # (720, 405, 3) -> (3, 720, 405)
+              image = np.transpose(image, (2, 0, 1)).astype(np.float32)
+              
+              features = self.dense_features[item, :]
+              targets = self.targets[item] / 100.0 # 나누기 100 추가
+              
+              return {
+                  "image": torch.tensor(image, dtype=torch.float),
+                  "features": torch.tensor(features, dtype=torch.float),
+                  "targets": torch.tensor(targets, dtype=torch.float),
+              }
+      ```
+
+    * ```python
+      if targets is not None: # From class PawpularModel(tez.Model)
+                  # RMSE
+                  # loss = nn.MSELoss()(x, targets.view(-1, 1))
+                  # metrics = self.monitor_metrics(x, targets)
+                  
+                  # BCE loss 추가
+                  loss = nn.BCEWithLogitsLoss()(x, targets.view(-1, 1))
+                  metrics = self.monitor_metrics(torch.sigmoid(x) * 100, targets * 100)
+                  return x, loss, metrics
+      ```
+
+  * model: swin_base_patch4_window7_224_in22k
+
+  * init 38.0, meta data = 0
+
+    * 1 fold cv is  21.97881, 2 fold cv is  19.18696, 3 fold cv is  18.90972
+    * **BCE를 사용하는 이상 bias를 38.0으로 초기화하는 건 의미 없네**
+
+  * init 0.0, meta data = 0
+
+    * 
+
+  * init 0.0, meta data = 0, RandomResizedCrop
+
+    * 
+
+
+
+* albumentations RandomResizedCrop
+  * Kaggle notebook에서는 문제 없음
+    * version: 1.1.0
+  * Google Colab notebook에서 AttributeError 발생
+    * version: 0.1.12
+    * 1.1.0 버전 설치해서 해결
+    * !pip install albumentations==1.1.0
+
+
 
 * 학습 데이터에 target 추가
 
