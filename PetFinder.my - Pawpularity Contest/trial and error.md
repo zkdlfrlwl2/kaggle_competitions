@@ -294,7 +294,7 @@
     * 1 fold cv: 18.00733, 2 fold cv: 18.36872
   * init 0.0, meta data = 0, RandomResizedCrop, target.diff().abs()
     * loss = target * 0.6 + target.diff.abs * 0.4
-      * d
+      * 1 fold cv is  19.20116, 2 fold cv is  19.51235
     * loss = target * 0.8 + target.diff.abs * 0.2
       * d
 
@@ -347,7 +347,7 @@
 
   * init 0.0, meta data = 0
 
-    * 
+    * 1 fold cv is  18.74303, 2 fold cv is  19.27812
 
   * init 0.0, meta data = 0, RandomResizedCrop
 
