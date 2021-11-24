@@ -58,3 +58,9 @@
   * the ratio of prediction spread divided by ground truth spread approximately indicates the correlation coefficient of our models
 * Explained variation
   * https://en.wikipedia.org/wiki/Explained_variation
+
+
+
+### ArcFace: Additive Angular Margin Loss for Deep Face Recognition.
+
+* https://norman3.github.io/papers/docs/arcface.html
