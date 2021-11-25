@@ -140,85 +140,6 @@
 
 
 
----------------------------
-
-
-
-### 1차 정리 - 11/19/2021
-
-* CV와 Public LB 차이가 많이 난다. 16.198 vs 18.10953 
-
-  * train dataset 분포와 test dataset 분포가 다른걸까 
-* Batch size는 작을 수록 CV가 더 잘나왔다. 
-
-  * Batch size 4 고정
-* lr
-
-  * start 1e-5, min 1e-6
-  * CosineAnnealingWarmRestarts
-* 유사한 이미지를 제거하고 target 값을 평균내서 학습을 돌리니 CV 값이 평균적으로 0.2 ~ 0.3 개선되었음.
-* 현 시점에서 swin large patch4 window12 384 in 22k model이 가장 CV가 잘 나오지만 1 epoch당 2h 4m이 걸려 10 folds를 다 돌리면 21시간이 걸린다. 근데 Google Colab Pro는 최대 24시간 런타임 이라 되어있지만 실제로 돌려보면 10시간도 안되서 런타임이 끊긴다. 여러 시도를 해보고 정 안되겠다 싶으면 model을 바꾸는 수밖에 
-
-  * swin base or large patch4 window 7 224 in 22k 
-* final dense layer의 bias를 target 값 평균인 약 38.0으로 초기화하는 것도 CV 개선에 도움이 되었음
-* 'swin_patch4_window7_224_in22k'
-
-  * base vs large
-    * large는 data aug가 많을 수록 CV가 잘 나왔고 반면에 base는 aug가 거의 없을 때, CV가 잘 나옴
-      * 이유는 모르겠고, window12_384도 마찬가지일까 ? 
-    * 384는 aug all이 더 CV 잘나오는 듯
-* CV vs LB correlation
-  * config
-    * remove dup and average target
-    * final dense layer의 bias를 38.0으로 초기화
-    * Batch size: 4
-    * Epochs: 10(224), 5(384)
-    * Early stopping patience: 3
-
-  * 'swin_base_patch4_window7_224_in22k'
-
-    * data aug base 1fold CV **15.668,  public lb 18.43586**, 41m 5s
-    * data aug all 1fold CV **15.903**, 47m 35s
-  * 'swin_large_patch4_window7_224_in22k'
-    * data aug base 1fold CV **15.905**, 50m 50s
-    * data aug all 1fold CV **15.744**, 1h 5m 27s
-  * 'swin_base_patch4_window12_384_in22k'
-    * data aug base 1fold CV **15.758**, 1h 16m 6s
-    * data aug all 1fold CV **15.742**, 1h 18m 50s
-  * 'swin_large_patch4_window12_384_in22k'
-    * data aug base 1fold CV 15.551, 2h 4m
-    * data aug all 1fold CV **15.439, public lb 18.54264**, 2h 4m
-  * 15.668 - 18.436 vs 15.869 - 18.165
-    * CV랑 LB 점수랑 비례하지가 않는다.
-    * batch size가 지나치게 작아서 그런걸까 
-    * RMSE 대신 BCE로 Loss를 변경하면 비례하게 바뀔까 ? 
-    * meta data와 target 간의 상관관계가 없어서 더 그럴까 ? 
-
-      * meta data를 제외하고 학습 시켜서 cv와 pb의 상관 관계를 살펴봐야하나 ?
-    * train과 test dataset 간의 분포가 달라서 그럴까 ? 
-    * training dataset인 이미지와 target 값 간의 연결 고리가 없어서 학습이 제대로 이루어지지 않는건가 
-
-      * 단순 평균 맞추기 -> 운의 요소가 영향을 끼치는 실패한 competition 인가 ?
-    * data augmentaion 차이인가 ? 
-      * aug 적은 것 대비 aug가 많으면 CV 대비 PB 감소가 두드러지는 건가 ? 
-
-
-​       
-
-* **시도해볼것들**
-  * swin 384 model은 5fold로, 224 model은 10fold로
-  * add rapids svr head - 4
-  * add other augmentation - **完** 
-  * from rmse loss to bce loss - 2 - **完** 
-  * use GANs for additinal data & aux loss
-  * 강아지냐 고양이냐의 label을 하나 더 추가해서 aux loss로 사용 - 5
-  * head에 attention layer 추가 해보기 - 3
-  * meta data 제외하고 학습 시켜보기 - 1 - **完** 
-  * 각 만드는 모델마다 oof도 같이 만들어서 실제 target 값과의 hist 및 평균값 비교해보기 - **完** 
-    * https://www.kaggle.com/kishalmandal/eda-of-rapids-svr-actual-vs-pred-comparison
-
-
-
 ---------------------------------
 
 
@@ -281,22 +202,36 @@
 * init bias and original meta data 비교 - Google Colab Pro
 
   * model: swin_base_patch4_window7_224_in22k
-  * init 38.0, meta data = 0
-    * 1 fold cv: 18.35615, 2 fold cv: 18.93261
-  * init 0.0, meta data = 0
-    * 1 fold cv: 18.99869, 2 fold cv: 18.91864
-  * init 38.0, meta data = 12
-    * 1 fold cv: 19.07274, 2 fold cv: 18.45164
-  * init 0.0, meta data = 12
-    * 1 fold cv: 18.59144, 2 fold cv: 19.15761
-  * meta data가 target하고 상관관계가 없어서 그런지 완전히 noise 취급인가보네 
-  * **init 38.0, meta data = 0, RandomResizedCrop**
-    * 1 fold cv: 18.00733, 2 fold cv: 18.36872
-  * init 0.0, meta data = 0, RandomResizedCrop, target.diff().abs()
-    * loss = target * 0.6 + target.diff.abs * 0.4
-      * 1 fold cv is  19.20116, 2 fold cv is  19.51235
-    * loss = target * 0.8 + target.diff.abs * 0.2
-      * d
+    * init 38.0, meta data = 0
+      * 1 fold cv: 18.35615, 2 fold cv: 18.93261
+    * init 0.0, meta data = 0
+      * 1 fold cv: 18.99869, 2 fold cv: 18.91864
+    * init 38.0, meta data = 12
+      * 1 fold cv: 19.07274, 2 fold cv: 18.45164
+    * init 0.0, meta data = 12
+      * 1 fold cv: 18.59144, 2 fold cv: 19.15761
+    * meta data가 target하고 상관관계가 없어서 그런지 완전히 noise 취급인가보네 
+    * **init 38.0, meta data = 0, RandomResizedCrop**, one loss default target, batchsize=4, lr=1e-5
+      * 1 fold cv: 18.00733, 2 fold cv: 18.36872
+    * init 0.0, meta data = 0, RandomResizedCrop, target.diff().abs()
+      * loss = target * 0.6 + target.diff.abs * 0.4
+        * 1 fold cv is  19.20116, 2 fold cv is  19.51235
+      * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5
+        * 1 fold cv is  18.62247, 2 fold cv is  18.35596
+      * loss = target * 0.8 + target.diff.abs * 0.2, batch size=8, lr=2e-5
+        * 1 fold cv is  18.57108, 2 fold cv is  18.43565
+      * loss = target * 0.8 + target.diff.abs * 0.2, batch size=16, lr=4e-5
+        * 1 fold cv is  18.51706, 2 fold cv is  18.81915
+      * loss = target * 0.5 + target.diff.abs * 0.5, batch size=4, lr=1e-5, out=(x1+x2)/2.0
+        * 1 fold cv is  19.56327, 2 fold cv is  19.48021
+      * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5, out=(x1 0.8 + x2 0. 2)
+        * swin_base_patch4_window7_224
+          * 1 fold cv is  18.91719, 2 fold cv is  18.1463
+        * swin_large_patch4_window7_224
+          * 3
+    * init bias mean target value 38.0, mean target.diff.abs value xx.x
+      * meta data=0, batchsize=4, lr=1e-5
+        * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5, out=(x1 0.8 + x2 0. 2)
 
 
 
@@ -340,18 +275,36 @@
 
   * model: swin_base_patch4_window7_224_in22k
 
-  * init 38.0, meta data = 0
-
-    * 1 fold cv is  21.97881, 2 fold cv is  19.18696, 3 fold cv is  18.90972
-    * **BCE를 사용하는 이상 bias를 38.0으로 초기화하는 건 의미 없네**
-
-  * init 0.0, meta data = 0
-
-    * 1 fold cv is  18.74303, 2 fold cv is  19.27812
-
-  * init 0.0, meta data = 0, RandomResizedCrop
-
-    * 
+    * init 38.0, meta data = 0, batch size=4, lr=1e-5, es 3
+      * 1 fold cv is  21.97881, 2 fold cv is  19.18696, 3 fold cv is  18.90972
+      * **BCE를 사용하는 이상 bias를 38.0으로 초기화하는 건 의미 없네**
+    * init 0.0, meta data = 0, batch size=4, lr=1e-5, es 3
+      * 1 fold cv is  18.74303, 2 fold cv is  19.27812
+    * init 0.0, meta data = 0, RandomResizedCrop, batch size=4, lr=1e-5, es 3
+      * 1 fold cv is  18.31289, 2 fold cv is  18.25749
+    * init 0.0, meta data = 0, RandomResizedCrop, batch size=8, lr=1e-5, es 3
+      * 1 fold cv is  18.073, 2 fold cv is  18.61555
+    * init 0.0, meta data = 0, RandomResizedCrop, batch size=8, lr=2e-5, es 3
+      * 1 fold cv is  18.63801, 2 fold cv is  18.69654
+    * init 0.0, meta data = 0, RandomResizedCrop, batch size=16, lr=4e-5, es 5
+      * 1 fold cv is  18.73122, 2 fold cv is  18.34747
+  
+  * model: swin_base_patch4_window7_224
+  
+    * init 0.0, meta data = 0, RandomResizedCrop, batch size=4, lr=1e-5, es 3
+      * 1 fold cv is  18.46248, 2 fold cv is  18.41336
+      * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5, out=(x1 0.8 + x2 0.2)
+        * 2
+  
+  * model: swin_large_patch4_window7_224
+  
+    * init 0.0, meta data = 0, RandomResizedCrop, batch size=4, lr=1e-5, es 3
+      * 1 fold cv is  18.19514
+  
+  * model: swin_large_patch4_window7_224_in22k
+  
+    * init 0.0, meta data = 0, RandomResizedCrop, batch size=4, lr=1e-5, es 3
+      * 1
 
 
 
@@ -367,5 +320,11 @@
 
 * 학습 데이터에 target 추가
 
-  * dog or cat label
+  * add dog or cat label
+  * add aux loss 
+
+
+
+* 무료 라이선스로 공개된 강아지 & 고양이 품종 데이터셋을 구해서 backborn을 학습 후 사용 or GAN 사용
+  * https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/278364
 
