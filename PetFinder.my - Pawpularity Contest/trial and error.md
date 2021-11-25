@@ -304,7 +304,7 @@
   * model: swin_large_patch4_window7_224_in22k
   
     * init 0.0, meta data = 0, RandomResizedCrop, batch size=4, lr=1e-5, es 3
-      * 1
+      * 1 fold cv is  18.19549, 2 fold cv is  17.96722
 
 
 
