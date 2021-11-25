@@ -91,11 +91,10 @@
 
 * ver 5 model
   * ver 4 model과 다른점
-    * **'swin_base_patch4_window7_224_in22k'**
+    * **'swin_large_patch4_window7_224'**
     * **meta data 사용 X**
     * **From RMSE to BCE loss**
     * add RandomResizedCrop
-    * final dense layer bias 38으로 초기화 
 
 
 
