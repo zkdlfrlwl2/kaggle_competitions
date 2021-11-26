@@ -13,7 +13,7 @@
 
 
 * 시도 해볼 것 들 
-  * add rapids svr head
+  * add rapids svr head - **完** 
   * add other augmentation - **完** 
     * RandomResizedCrop
   * from rmse loss to bce loss - **完** 
@@ -27,7 +27,26 @@
 
 ---------------------------
 
+
+
 ### 2차 정리 - 11/26/2021
 
-
+* In regression
+  * init 38.0, meta data = 0, RandomResizedCrop, one loss default target, batchsize=4, lr=1e-5
+    * 1 fold cv: 18.00733, 2 fold cv: 18.36872
+  * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5
+    * 1 fold cv is  18.62247, 2 fold cv is  18.35596
+  * target을 하나 더 늘려서 시도해봤는데 별로였음
+* In classification
+  * BCE로 변경했을 때, bias를 38.0으로 초기화하는 건 별로 왜냐 범위가 0 ~ 1 이기 때문에
+* SVR head 
+  * ver 5 vs ver 6 (적용)
+    * CV: 17.79845 vs **17.74849**
+    * Public LB: **18.03773** vs 18.06732
+  * SVR Head 적용 후 CV 약간 개선, LB는 오히려 증가
+* Add other target
+  * target을 따로 (4, 1), (4, 1)로 하는 것이 아니라 (4, 2)로 해서 시도
+* 학습 데이터에 Dog or Cat labeling은 품이 너무 많이 듬 
+  * Labeling 방법 고민 해봐야할 듯 
+* Dog or Cat 무료 라이선스 데이터 구해서 Backborn 학습 시도
 
