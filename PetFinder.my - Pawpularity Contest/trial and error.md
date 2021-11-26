@@ -227,8 +227,6 @@
       * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5, out=(x1 0.8 + x2 0. 2)
         * swin_base_patch4_window7_224
           * 1 fold cv is  18.91719, 2 fold cv is  18.1463
-        * swin_large_patch4_window7_224
-          * 3
     * init bias mean target value 38.0, mean target.diff.abs value xx.x
       * meta data=0, batchsize=4, lr=1e-5
         * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5, out=(x1 0.8 + x2 0. 2)
@@ -293,13 +291,13 @@
   
     * init 0.0, meta data = 0, RandomResizedCrop, batch size=4, lr=1e-5, es 3
       * 1 fold cv is  18.46248, 2 fold cv is  18.41336
-      * loss = target * 0.8 + target.diff.abs * 0.2, batch size=4, lr=1e-5, out=(x1 0.8 + x2 0.2)
-        * 2
-  
+    
   * model: swin_large_patch4_window7_224
   
     * init 0.0, meta data = 0, RandomResizedCrop, batch size=4, lr=1e-5, es 3
       * 1 fold cv is  18.19514
+    * meta data = 12
+      * 1 fold cv is  18.72539, 2 fold cv is  18.50451
   
   * model: swin_large_patch4_window7_224_in22k
   
@@ -321,6 +319,7 @@
 * 학습 데이터에 target 추가
 
   * add dog or cat label
+    * 너무 노가다
   * add aux loss 
 
 
