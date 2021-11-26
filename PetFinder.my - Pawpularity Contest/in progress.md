@@ -5,7 +5,8 @@
 | ver2 - 10folds  | 17.94588 | 18.30072  |            |
 | ver3 - 10folds  | 18.01586 | 18.24908  |            |
 | ver4 - 10folds  | 18.35333 | 18.40091  |            |
-| ver5 - 10folds  |          |           |            |
+| ver5 - 10folds  | 17.79845 | 18.03773  |            |
+| ver6 - 10folds  | 17.74849 | 18.06732  |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -97,6 +98,12 @@
     * add RandomResizedCrop
 
 
+
+* ver 6 model
+  * ver 5 model에서 SVR head 추가
+  * Overall CV NN head RSME = 17.79845490677977
+  * Overall CV SVR head RSME = 18.12954052168302
+  * Overall CV Ensemble heads RSME with 50% NN and 50% SVR = 17.7484913618123
 
 
 
