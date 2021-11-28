@@ -324,6 +324,20 @@
 
 
 
+* Augmentation 테스트
+  * 기준: swin_large_patch4_window7_224, 10fold, vertical, horizen, randomresizedcrop
+    * 1 fold cv is  18.19514, 2 fold cv is  17.76622
+  * base + HueSaturationValue
+    * 1 fold cv is  18.12598, 2 fold cv is  17.98985
+  * base + RandomBrightnessContrast
+    * 1 fold cv is  18.39982, 2 fold cv is  18.15812
+  * base + ShiftScaleRotate
+    * 1 fold cv is  18.15113, 2 fold cv is  18.18748
+  * base + blur
+    * 
+
+
+
 * 무료 라이선스로 공개된 강아지 & 고양이 품종 데이터셋을 구해서 backborn을 학습 후 사용 or GAN 사용
   * https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/278364
 
