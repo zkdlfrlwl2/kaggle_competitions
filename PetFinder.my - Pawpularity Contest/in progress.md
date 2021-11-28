@@ -7,6 +7,8 @@
 | ver4 - 10folds  | 18.35333 | 18.40091  |            |
 | ver5 - 10folds  | 17.79845 | 18.03773  |            |
 | ver6 - 10folds  | 17.74849 | 18.06732  |            |
+|  ver7 - 5folds  | 17.81729 | 18.04533  |            |
+| ver7 - SVR head | 17.67098 | 18.07251  |            |
 
 한 달에 Model 1개 목표로 진행 
 
@@ -104,6 +106,15 @@
   * Overall CV NN head RSME = 17.79845490677977
   * Overall CV SVR head RSME = 18.12954052168302
   * Overall CV Ensemble heads RSME with 50% NN and 50% SVR = 17.7484913618123
+
+
+
+* ver 7 model
+  * ver 5 model과 다른점
+    * swin_large_patch4_window12_384
+    * 5fold
+
+
 
 
 
