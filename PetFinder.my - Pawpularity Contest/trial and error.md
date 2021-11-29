@@ -1,3 +1,5 @@
+#### 2021 - 11 - 15 ~ 19
+
 * target 값 평균이 약 38.034 이므로 마지막 dense layer의 bias를 38.0으로 초기화해서  수렴 속도를 빠르게 하고 hockey stick loss curve를 없앤다
 
   * ```python
@@ -324,6 +326,12 @@
 
 
 
+------------------------------
+
+
+
+#### 2021 - 11 - 29 ~ 12 - 03
+
 * Augmentation 테스트
   * 기준: swin_large_patch4_window7_224, 10fold, vertical, horizen, randomresizedcrop
     * 1 fold cv is  18.19514, 2 fold cv is  17.76622
@@ -333,11 +341,21 @@
     * 1 fold cv is  18.39982, 2 fold cv is  18.15812
   * base + ShiftScaleRotate
     * 1 fold cv is  18.15113, 2 fold cv is  18.18748
-  * base + blur
-    * 
+  * All Aug
+    * 1 fold cv is  18.28544, 2 fold cv is  18.18753
 
 
 
-* 무료 라이선스로 공개된 강아지 & 고양이 품종 데이터셋을 구해서 backborn을 학습 후 사용 or GAN 사용
-  * https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/278364
+* Add Dropout
+  * no dropout, base aug
+    * 1 fold cv is  18.19514, 2 fold cv is  17.76622
+  * Image out - dropout 0.1, base aug
+    * 1 fold cv is  18.6818, 2 fold cv is  17.97122
+  * Image out - dropout 0.2, base aug
+    * 1 fold cv is  18.32223, 2 fold cv is  17.98111
 
+
+
+무료 라이선스로 공개된 강아지 & 고양이 품종 데이터셋을 구해서 backborn을 학습 후 사용 or GAN 사용
+
+* https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/278364
