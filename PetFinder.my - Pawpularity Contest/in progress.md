@@ -116,6 +116,12 @@
 
 
 
+* ver 8 model
+  * ver 5 model과 다른점
+    * batch size=16
+
+
+
 
 
 ### Reference
