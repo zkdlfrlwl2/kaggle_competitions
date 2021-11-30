@@ -347,12 +347,24 @@
 
 
 * Add Dropout
-  * no dropout, base aug
+  * no dropout, base aug, lr=1e-5, Batch Size = 4
     * 1 fold cv is  18.19514, 2 fold cv is  17.76622
   * Image out - dropout 0.1, base aug
     * 1 fold cv is  18.6818, 2 fold cv is  17.97122
   * Image out - dropout 0.2, base aug
     * 1 fold cv is  18.32223, 2 fold cv is  17.98111
+
+
+
+* Batch Size
+  * Batch Size = 8, lr=1e-5, eta_min=1e-6
+    * 1 fold cv is  18.02865, 2 fold cv is  17.99235
+    * lr=2e-5, eta_min=2e-6
+      * 1 fold cv is  18.39142, 2 fold cv is  18.33168
+  * Batch Size = 16, lr=1e-5, eta_min=1e-6
+    * 1 fold cv is  17.83296, 2 fold cv is  17.81833
+    * lr=2e-5, eta_min=2e-6
+      * 1 fold cv is  18.14699, 2 fold cv is  18.51219
 
 
 
