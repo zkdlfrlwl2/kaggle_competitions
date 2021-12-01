@@ -362,9 +362,38 @@
     * lr=2e-5, eta_min=2e-6
       * 1 fold cv is  18.39142, 2 fold cv is  18.33168
   * Batch Size = 16, lr=1e-5, eta_min=1e-6
-    * 1 fold cv is  17.83296, 2 fold cv is  17.81833
+    * 1 fold cv is  17.83296, 2 fold cv is  17.81833, avg: 17.825645
     * lr=2e-5, eta_min=2e-6
       * 1 fold cv is  18.14699, 2 fold cv is  18.51219
+
+
+
+* FCNN Head 변경
+
+  * ```python
+    x1 = self.model(image)  # head_out = 192
+    x = self.dense1(x1)		# (192, 64) 
+    x = self.dense2(x) 		# (64, 192)
+    x = x + x1				# skip connection
+    x = self.selu(x)		# activation function
+    x = self.dense3(x)		# (192, 1)
+    ```
+
+    * 1 fold cv is  17.88736, 2 fold cv is  18.15427
+
+  * ```python
+    x1 = self.model(image)  # head_out = 192
+    x = self.dense1(x1)		# (192, 64)  
+    x = self.selu(x)
+    x = self.dense2(x) 		# (64, 192) 
+    x = x + x1				# skip connection
+    x = self.selu(x)
+    x = self.dense3(x)		# (192, 32)
+    x = self.relu(x)
+    x = self.dense4(x)		# (32, 1)
+    ```
+
+    * 1 fold cv is  17.97496, 2 fold cv is  17.73186, avg: 17.85341
 
 
 
