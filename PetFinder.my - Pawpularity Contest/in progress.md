@@ -126,6 +126,30 @@
 
 
 
+* ver 9 model
+
+  * ver 8 과 동일
+
+  * 다른점
+
+    * FCNN Head
+
+      * ```python
+        x1 = self.model(image)  # head_out = 192
+        x = self.dense1(x1)		# (192, 64)  
+        x = self.selu(x)
+        x = self.dense2(x) 		# (64, 192) 
+        x = x*0.7 + x1*0.3		# skip connection
+        x = self.selu(x)
+        x = self.dense3(x)		# (192, 32)
+        x = self.relu(x)
+        x = self.dense4(x)		# (32, 1)
+        ```
+
+        
+
+
+
 
 
 ### Reference
