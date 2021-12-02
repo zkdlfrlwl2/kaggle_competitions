@@ -1,22 +1,22 @@
-|      Model       |             CV             |     Public LB     | Private LB |
-| :--------------: | :------------------------: | :---------------: | :--------: |
-| Base - 10 folds  |          18.35465          |       18.49       |            |
-|  ver1 - 10folds  |          18.02539          |     18.10953      |            |
-|  ver2 - 10folds  |          17.94588          |     18.30072      |            |
-|  ver3 - 10folds  |          18.01586          |     18.24908      |            |
-|  ver4 - 10folds  |          18.35333          |     18.40091      |            |
-|  ver5 - 10folds  |          17.79845          |     18.03773      |            |
-|  ver6 - 10folds  |          17.74849          |     18.06732      |            |
-|  ver7 - 5folds   |          17.81729          |     18.04533      |            |
-| ver7 - SVR head  | 17.67098 - 1st cv svr head |     18.07251      |            |
-| ver 8 - 10folds  |          17.73651          | 18.02347 - 1st lb |            |
-| ver 8 - SVR head |          17.67373          |     18.07010      |            |
-| ver 9 - 10folds  |  17.69658 - 1st cv orgin   |     18.04895      |            |
-| ver 9 - SVR head |          17.68860          |     18.07064      |            |
+|       Model       |             CV             |     Public LB     | Private LB |
+| :---------------: | :------------------------: | :---------------: | :--------: |
+|  Base - 10 folds  |          18.35465          |       18.49       |            |
+|  ver1 - 10folds   |          18.02539          |     18.10953      |            |
+|  ver2 - 10folds   |          17.94588          |     18.30072      |            |
+|  ver3 - 10folds   |          18.01586          |     18.24908      |            |
+|  ver4 - 10folds   |          18.35333          |     18.40091      |            |
+|  ver5 - 10folds   |          17.79845          |     18.03773      |            |
+|  ver6 - 10folds   |          17.74849          |     18.06732      |            |
+|   ver7 - 5folds   |          17.81729          |     18.04533      |            |
+|  ver7 - SVR head  | 17.67098 - 1st cv svr head |     18.07251      |            |
+|  ver 8 - 10folds  |          17.73651          | 18.02347 - 1st lb |            |
+| ver 8 - SVR head  |          17.67373          |     18.07010      |            |
+|  ver 9 - 10folds  |  17.69658 - 1st cv orgin   |     18.04895      |            |
+| ver 9 - SVR head  |          17.68860          |     18.07064      |            |
+| ver 10 - 10folds  |                            |                   |            |
+| ver 10 - SVR head |                            |                   |            |
 
 
-
-한 달에 Model 1개 목표로 진행 
 
 * Base model
   * Model: **'swin_base_patch4_window7_224'** in the timm library
@@ -130,7 +130,7 @@
 
 * ver 9 model
 
-  * ver 8 과 동일
+  * ver 8과 동일
 
   * 다른점
 
@@ -150,7 +150,12 @@
 
         
 
-
+* ver 10 model
+  * ver 9와 동일
+  * 다른점
+    * train_remove_dup_pseudo_10folds_ver2 데이터 (paw data + oxford data) 사용
+    * Adam lr = 3e-4, lr scheduler 3e-6
+    * epochs=7, patience=3
 
 
 
