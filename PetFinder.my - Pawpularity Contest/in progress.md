@@ -155,7 +155,6 @@
   * 다른점
     * train_remove_dup_pseudo_10folds_ver2 데이터 (paw data + oxford data) 사용
     * Adam lr = 3e-4, lr scheduler 3e-6
-    * epochs=7, patience=3
 
 
 
