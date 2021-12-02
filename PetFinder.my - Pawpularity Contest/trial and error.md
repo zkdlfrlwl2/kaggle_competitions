@@ -399,6 +399,51 @@
 
 
 
-무료 라이선스로 공개된 강아지 & 고양이 품종 데이터셋을 구해서 backborn을 학습 후 사용 or GAN 사용
+* 무료 라이선스로 공개된 강아지 & 고양이 품종 데이터셋을 구해서 backborn을 학습 후 사용 or GAN 사용
 
-* https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/278364
+  * https://www.kaggle.com/c/petfinder-pawpularity-score/discussion/278364
+
+  * ViT의 경우, pre-trained dataset이 매우 크지 않는 이상 CNN을 능가하지 못한다.
+    * vision transformers are extremely hard to train due to the extremely large scale of data needed to learn good feature extraction
+    * 10000개도 안되는 데이터셋으로 하기엔 역부족하다는 소리인 것 같은데
+      * 실제로 분류 돌려보니 CNN에 비해 성능이 너무 안나옴 
+      * https://towardsdatascience.com/vision-transformers-in-pytorch-43d13cb7ec7a
+  * EfficientNet을 사용해서 paw 값을 예측할거면 한 번 시도해봐도 괜찮을 것 같고
+  * 그럼 강아지 & 고양이 품종 분류 데이터셋을 aux loss로 사용해야하나 
+    * 일단 이 강아지 & 고양이 데이터셋을 Inference한 다음, 나오는 paw 값을 넣어서 psuedo labeling 형식으로 사용해보자 
+    * 기존 학습한 모델로 oxford 데이터를 사용하여 paw 값을 구하는 OOF 방식 말고 기존 pet 대회 데이터셋의 paw 타겟값의 분포와 동일하게 값을 할당해서 학습을 진행해본다면 ? 
+      * 어차피 paw 값 계산과의 상관관계를 나타낼 수 있을만한 meta data는 없으니까 해볼만할 것 같은데
+
+
+
+* Oxford Cat & Dog Image를 활용한 Psuedo labeling 시도
+  * **Model ver9 config base**
+  * Oxford train + test dataset
+    * train_remove_dup_pseudo_10folds 사용
+    * 1 fold cv is  12.09075, 2 fold cv is  11.77785
+
+
+
+* New dataset target 분포 비교
+
+  * base: train_remove_dup_10folds
+
+    * paw data only
+
+      ![base](https://user-images.githubusercontent.com/92927837/144373108-8998f744-88e5-40a1-9eef-a589e51850dd.png)
+
+  * train_remove_dup_pseudo_10folds
+
+    * paw data + oxford data
+
+    * oxford data의 paw target값은 model 9의 oof
+
+      ![ver1](https://user-images.githubusercontent.com/92927837/144373064-81e329ad-b7b2-4de3-bf05-32a0a1011671.png)
+
+  * train_remove_dup_pseudo_10folds_ver2
+
+    * paw data + oxford data
+
+    * oxford data의 paw target값은 np.random.choice로 기존 paw target값으로 채워넣음
+
+      ![ver2](https://user-images.githubusercontent.com/92927837/144373281-37633438-dd57-470d-a74d-f222bbd69909.png)
