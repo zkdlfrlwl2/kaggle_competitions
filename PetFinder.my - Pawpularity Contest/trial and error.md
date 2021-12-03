@@ -447,3 +447,8 @@
     * oxford data의 paw target값은 np.random.choice로 기존 paw target값으로 채워넣음
 
       ![ver2](https://user-images.githubusercontent.com/92927837/144373281-37633438-dd57-470d-a74d-f222bbd69909.png)
+
+
+
+* Oxford 데이터를 사용해서 AE 학습 시키고 AE - Transformer - FCNN Head로 구성해보는 건 ?
+* 이미 학습한 모델을 fold 별로 불러와서 다시 학습 시킨 후 Inference 시킨다면 ? 
