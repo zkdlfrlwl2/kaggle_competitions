@@ -9,12 +9,13 @@
 |  ver6 - 10folds   |          17.74849          |     18.06732      |            |
 |   ver7 - 5folds   |          17.81729          |     18.04533      |            |
 |  ver7 - SVR head  | 17.67098 - 1st cv svr head |     18.07251      |            |
-|  ver 8 - 10folds  |          17.73651          | 18.02347 - 1st lb |            |
+|  ver 8 - 10folds  |          17.73651          |     18.02347      |            |
 | ver 8 - SVR head  |          17.67373          |     18.07010      |            |
 |  ver 9 - 10folds  |  17.69658 - 1st cv orgin   |     18.04895      |            |
 | ver 9 - SVR head  |          17.68860          |     18.07064      |            |
-| ver 10 - 10folds  |                            |                   |            |
-| ver 10 - SVR head |                            |                   |            |
+| ver 10 - 10folds  |          19.08658          |     18.04916      |            |
+| ver 11 - 10folds  |          22.41390          | 17.96100 - 1st lb |            |
+| ver 11 - SVR head |          19.36459          |     18.24712      |            |
 
 
 
@@ -154,6 +155,15 @@
   * ver 9와 동일
   * 다른점
     * train_remove_dup_pseudo_10folds_ver2 데이터 (paw data + oxford data) 사용
+
+
+
+* ver 11 model
+  * ver 9과 동일
+  * 다른점
+    * train_remove_dup_pseudo_10folds 데이터 (paw data + oxford data) 사용
+
+
 
 
 
