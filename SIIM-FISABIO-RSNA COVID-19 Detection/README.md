@@ -17,7 +17,7 @@
     * tf.image.random_flip_left_right
     * Mixup
     * Cutmix
-    * Pseudo labeling
+  * Pseudo labeling
 
   * lr schedule
     * LR ramp up
