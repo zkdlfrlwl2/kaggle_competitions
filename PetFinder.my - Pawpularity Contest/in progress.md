@@ -16,6 +16,7 @@
 | ver 10 - 10folds  |          19.08658          |     18.04916      |            |
 | ver 11 - 10folds  |          22.41390          | 17.96100 - 1st lb |            |
 | ver 11 - SVR head |          19.36459          |     18.24712      |            |
+| ver 12 - 10folds  |                            |                   |            |
 
 
 
@@ -162,6 +163,13 @@
   * ver 9과 동일
   * 다른점
     * train_remove_dup_pseudo_10folds 데이터 (paw data + oxford data) 사용
+
+
+
+* ver 12 model
+  * ver 11과 동일
+  * 다른점
+    * 학습을 완전 처음부터 하지않고 ver9 model을 불러와서 재학습 진행 후 평가
 
 
 
