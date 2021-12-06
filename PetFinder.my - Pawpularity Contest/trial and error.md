@@ -418,6 +418,7 @@
 
 * Oxford Cat & Dog Image를 활용한 Psuedo labeling 시도
   * **Model ver9 config base**
+    * 처음부터 새로 학습
   * Oxford train + test dataset
     * train_remove_dup_pseudo_10folds 사용
     * 1 fold cv is  12.09075, 2 fold cv is  11.77785
@@ -452,3 +453,19 @@
 
 * Oxford 데이터를 사용해서 AE 학습 시키고 AE - Transformer - FCNN Head로 구성해보는 건 ?
 * 이미 학습한 모델을 fold 별로 불러와서 다시 학습 시킨 후 Inference 시킨다면 ? 
+
+
+
+-------------------------
+
+
+
+#### 2021 - 12 - 06 ~ 10
+
+* Oxford Cat & Dog Image를 활용한 Psuedo labeling 시도
+  * **Model ver9 config base**
+    * model ver9 load하여 추가 학습
+  * Oxford train + test dataset
+    * train_remove_dup_pseudo_10folds 사용
+    * 1 fold cv is  10.68405, 2 fold cv is  9.95456
+
