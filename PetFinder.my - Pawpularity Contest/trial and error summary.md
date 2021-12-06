@@ -50,3 +50,20 @@
   * Labeling 방법 고민 해봐야할 듯 
 * Dog or Cat 무료 라이선스 데이터 구해서 Backborn 학습 시도
 
+
+
+-------------------------------
+
+
+
+### 3차 정리 - 12/6/2021
+
+* model ver9를 사용하여 Oxford cat & dog 데이터로 paw target값 예측
+* 기존 paw 이미지 데이터와 paw target값 예측한 Oxford 이미지 데이터를 합하여 model ver 9 config와 동일하게 처음부터 학습 진행 
+  *  결과 (ver 11 model)
+    * CV: 22.41390
+    * LB: 17.96100
+* oxford data의 paw target값은 np.random.choice로 기존 paw target값으로 채워넣어서 model ver9 config와 동일하게 처음부터 학습 진행
+  * 결과 (ver 10 model)
+    * CV: 19.08658
+    * LB: 18.04916
