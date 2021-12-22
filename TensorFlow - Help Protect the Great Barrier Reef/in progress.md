@@ -6,9 +6,11 @@
 
 
 * Base model
-  * Model: YOLOX-s
-  * 5 fold wbf ensenble
-  * delete unlabeled data
+  * Model: YOLOv5-m6
+  * config
+    * batchsize 8, epoch 50
+    * 80/20 split base subsequence
+    * delete unlabeled data
 
 
 
