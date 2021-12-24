@@ -1,14 +1,14 @@
-|     Model      |  CV  | Public LB | Private LB |
-| :------------: | :--: | :-------: | :--------: |
-| Base - 5 folds |      |           |            |
-|                |      |           |            |
+| Model |  CV   | Public LB | Private LB |
+| :---: | :---: | :-------: | :--------: |
+| ver1  | 0.447 |   0.324   |            |
+|       |       |           |            |
 
 
 
-* Base model
+* ver1
   * Model: YOLOv5-m6
   * config
-    * batchsize 8, epoch 50
+    * batchsize 10, epoch 50
     * 80/20 split base subsequence
     * delete unlabeled data
 
