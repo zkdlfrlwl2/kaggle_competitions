@@ -59,6 +59,13 @@
 
 
 
+* ver5
+  * ver4와 다른점
+    * metric의 fitness
+      * [0.0 0.0 0.1 0.9] -> [0.0 0.3 0.1 0.6]으로 변경
+
+
+
 ### Reference
 
 * https://www.kaggle.com/remekkinas/yolox-training-pipeline-cots-dataset-lb-0-507?scriptVersionId=81353936
