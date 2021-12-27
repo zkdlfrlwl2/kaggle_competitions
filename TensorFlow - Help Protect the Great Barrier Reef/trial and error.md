@@ -14,12 +14,18 @@
   * Yolov5 loss function 변경
       * F2 score를 인자로 추가 
       * R & P 추가하여 R 값에 가중치 부여 
-  * 이미지 augmentation
-  
-      * yolo hyp.yaml 이외의 augmentation 적용
-        
-        * 모델에 입력으로 넣기 전 수중 이미지를 좀 더 선명하게 하는 preprocessing
   
   
   * hyp.yaml 수정 
 
+
+
+#### 2021 - 12 - 27 ~ 2022 - 01 - 02
+
+* WBF 시도
+* Tracking 시도
+* 이미지 augmentation
+  * yolo hyp.yaml 이외의 augmentation 적용
+
+    * 모델에 입력으로 넣기 전 수중 이미지를 좀 더 선명하게 하는 preprocessing
+* yolov5는 mAP 0.5 ~ 0.95이다. 하지만 kaggle 대회는 mAP 0.3 ~ 0.8 interval 0.05 이다. yolov5의 코드를 0.3 ~ 0.8, 0.05로 바꾸면 CV와 LB 차이가 더 줄어들지 않을까 싶은데 
