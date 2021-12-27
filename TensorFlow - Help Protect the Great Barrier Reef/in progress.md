@@ -4,7 +4,10 @@
 | ver2  |   -   |   0.374   |            |
 | ver3  | 0.539 |   0.425   |            |
 | ver4  | 0.546 |   0.435   |            |
-|       |       |           |            |
+| ver5  |   -   |   0.394   |            |
+| ver6  | 0.534 |   0.419   |            |
+| ver7  |       |           |            |
+| ver8  |       |           |            |
 
 
 
@@ -63,6 +66,38 @@
   * ver4와 다른점
     * metric의 fitness
       * [0.0 0.0 0.1 0.9] -> [0.0 0.3 0.1 0.6]으로 변경
+  * result
+    * best
+      * LB: 0.394
+
+
+
+* ver6
+  * ver4와 다른점
+    * epoch=10 테스트 목적
+    * mAP .5:.95 -> .3:.8로 변경
+  * result
+    * best
+      * CV: 0.534
+      * LB: 0.419
+
+
+
+* ver7
+  * epoch=50
+  * patience=15
+  * hyper parameter
+    * hyp.scratch-med.yaml 적용
+
+
+
+* ver8
+  * epoch=50
+  * patience=15
+  * hyper parameter
+    * hyp.scratch-high.yaml 적용
+
+
 
 
 
@@ -71,3 +106,4 @@
 * https://www.kaggle.com/remekkinas/yolox-training-pipeline-cots-dataset-lb-0-507?scriptVersionId=81353936
 * https://www.kaggle.com/julian3833/reef-a-cv-strategy-subsequences
 * https://www.kaggle.com/yamqwe/great-barrier-reef-yolox-yolov5-ensemble
+* https://www.kaggle.com/parapapapam/yolox-inference-tracking-on-cots-lb-0-539/notebook
