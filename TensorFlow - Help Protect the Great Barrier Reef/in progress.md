@@ -6,7 +6,7 @@
 | ver4  | 0.546 |   0.435   |            |
 | ver5  |   -   |   0.394   |            |
 | ver6  | 0.534 |   0.419   |            |
-| ver7  |       |           |            |
+| ver7  | 0.588 |   0.435   |            |
 | ver8  |       |           |            |
 
 
@@ -88,6 +88,10 @@
   * patience=15
   * hyper parameter
     * hyp.scratch-med.yaml 적용
+  * result
+    * best
+      * CV: 0.588
+      * LB: 0.435
 
 
 
