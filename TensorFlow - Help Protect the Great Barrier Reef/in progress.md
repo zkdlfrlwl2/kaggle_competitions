@@ -8,6 +8,7 @@
 | ver6  | 0.534 |   0.419   |            |
 | ver7  | 0.588 |   0.435   |            |
 | ver8  | 0.593 |   0.459   |            |
+| ver9  | 0.618 |   0.477   |            |
 
 
 
@@ -106,6 +107,51 @@
       * LB: 0.459
 
 
+
+* ver9
+  * epochs=50
+  * patience=20
+  * yolov5m6.pt
+  * ver9 hyp
+    * hyp.scratch-med.yaml base
+    * lr0: 0.01 -> 0.001
+    * warmup_epochs: 3.0 -> 5.0
+    * flipud: 0.0 -> 0.5
+    * mixup: 0.1 -> 0.2
+  * result
+    * best
+      * CV: 0.618
+      * LB: 0.477
+
+
+
+* ver10
+  * epochs=50
+  * patience=20
+  * yolov5m6.pt
+  * ver10 hyp
+    * hyp.scratch-high.yaml base
+    * lr0: 0.01 -> 0.001
+    * warmup_epochs: 3.0 -> 5.0
+    * flipud: 0.0 -> 0.5
+    * mixup: 0.1 -> 0.2
+    * copy_paste: 0.1 -> 0.2
+  * result
+    * best
+      * CV: 
+      * LB: 
+
+
+
+* ver11
+  * epochs=50
+  * patience=20
+  * yolov5m6.pt
+  * hyp.finetune.yaml
+  * result
+    * best
+      * CV:
+      * LB:
 
 
 
