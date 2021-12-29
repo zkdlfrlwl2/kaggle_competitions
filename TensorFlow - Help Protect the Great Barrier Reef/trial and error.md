@@ -29,3 +29,7 @@
 
     * 모델에 입력으로 넣기 전 수중 이미지를 좀 더 선명하게 하는 preprocessing
 * yolov5는 mAP 0.5 ~ 0.95이다. 하지만 kaggle 대회는 mAP 0.3 ~ 0.8 interval 0.05 이다. yolov5의 코드를 0.3 ~ 0.8, 0.05로 바꾸면 CV와 LB 차이가 더 줄어들지 않을까 싶은데 
+* unlabeled data 사용
+  * cls: bgr
+  * bbox: 0.0
+* cls는 cots 밖에 없으니 cls에 각 이미지의 bbox 갯수로 채워 넣는다면 ? 1 ~ 18개니까 18개 분류가 될 듯 
