@@ -32,4 +32,5 @@
 * unlabeled data 사용
   * cls: bgr
   * bbox: 0.0
-* cls는 cots 밖에 없으니 cls에 각 이미지의 bbox 갯수로 채워 넣는다면 ? 1 ~ 18개니까 18개 분류가 될 듯 
+* cls는 cots 밖에 없으니 cls에 각 이미지의 bbox 갯수로 채워 넣는다면 ? 1 ~ 18개니까 18개 분류가 될 듯
+* yolov5 augmentation 적용법  
