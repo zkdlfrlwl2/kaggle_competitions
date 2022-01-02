@@ -247,9 +247,64 @@
 
 * Depthwise separable convolution
 
-  <img src="https://user-images.githubusercontent.com/92927837/147797474-845d4add-0027-43e7-bf93-844e05bfe84b.png" alt="image" style="zoom: 80%;" />
+  <img src="https://user-images.githubusercontent.com/92927837/147867383-d5a16c20-628a-40b4-9a21-7ff13217845a.png" alt="image" style="zoom:80%;" />
 
-  * d
+  * Depthwise convolution
+  
+    * **Depthwise convolution은 각 입력 채널에 대하여 3x3 conv 하나의 필터가 연산을 수행하여 하나의 feature map을 생성 한다.** 입력 채널 수가 M개면 M개의 feature map을 생성 한다. 각 채널마다 독립적으로 연산을 수행하여 **spatial correlation**을 계산하는 역할을 한다. 예를 들어 5 채널의 입력값이 입력되었으면 5개의 3x3 conv filter가 각 채널에 대하여 연산을 수행하고 5개의 feature map을 생성 한다. 연산량은 하기와 같다. 
+      $$
+      D_K \cdot D_K \cdot M \cdot D_F \cdot D_F
+      $$
+      D_k는 입력 값의 크기, M은 입력 채널의 수, D_F는 feature map의 크기
+  
+  * Pointwise convolution
+  
+    * **Pointwise convolution은 Depthwise convolution이 생성한 feature map들을 1x1 conv filter로 채널 수를 조정 한다.** 1x1 conv filter는 모든 채널에 대하여 연산하므로 **cross-channel correlation**을 계산하는 역할을 한다. 연산량은 다음과 같다.
+      $$
+      M \cdot N \cdot D_F \cdot D_F 
+      $$
+      M은 입력 채널의 수, N은 출력 채널의 수, D_F는 feature map의 크기
+  
+  * Depthwise separable convolution은 Depthwise convolution 이후에 Pointwise convolution을 적용한 것 이다. 아래 그림은 **MobileNet에서 사용하는 Depthwise separable convolution 구조**이다.
+  
+    <img src="https://user-images.githubusercontent.com/92927837/147867698-fd685266-d51b-40ee-944f-465831ccca80.png" alt="image" style="zoom: 80%;" />
+  
+    * 연산량은 하기와 같다
+      $$
+      D_K \cdot D_K \cdot M \cdot D_F \cdot D_F \cdot + M \cdot N \cdot D_F \cdot D_F
+      $$
+      둘의 연산량을 더해준 것과 같고 기존 conv 연산량 대비 **8 ~ 9배** 더 적다. 기존 conv 연산량은 하기와 같다
+      $$
+      D_k \cdot D_K \cdot M \cdot N \cdot D_F \cdot D_F
+      $$
+      MoblieNet은 이 Depthwise separable convolution을 기반으로 구축된 모델이다.
+  
+* MobileNet architecture
+
+  <img src="https://user-images.githubusercontent.com/92927837/147867816-26b323ff-c3fe-4000-a9b5-617dae5226e8.png" alt="image" style="zoom:80%;" />
+
+  * 첫 번째 conv를 제외하고 depthwise separabel convolution을 사용합니다. 마지막 FC 레이어를 제외하고 모든 레이어에 BN, ReLU를 사용합니다. Down-sampling은 depthwise convolution과 첫 번째 conv layer에서 수행합니다. 총 28 레이어를 갖습니다.
+
+* Hyper parameter
+
+  * latency와 accuracy를 조절하는 두 개의 하이퍼 파라미터가 존재 한다.
+
+  * Width Multiplier: Thinner Models
+
+    * 첫 번째 $$\alpha$$는 MoblineNet의 **두께를 결정**한다. Conv Net에서 **두께는 각 Layer의 filter 수를 의미** 한다. 이 $$\alpha$$는 더 얇은 모델이 필요할 때 사용 한다. 연산량은 다음과 같다.
+      $$
+      D_K \cdot D_K \cdot \alpha M \cdot D_F \cdot D_F + \alpha M \cdot \alpha N \cdot D_F \cdot D_F
+      $$
+      $$\alpha$$는 0 ~ 1 범위이며 기본적으로 1을 사용 한다. $$\alpha$$를 낮추면 **모델의 파라미터 수가 감소** 한다.
+
+      ![image](https://user-images.githubusercontent.com/92927837/147868086-4f672e5a-e083-4786-ba69-9618a852b4ac.png)
+
+  * Resolution Multiplier: Reduced Representation
+
+    * 두 번째 $$\rho$$는 **모델의 연산량을 감소시키기 위해 사용**한다. $$\rho$$는 **입력 이미지에 적용하여 해상도를 낮춘다**. 범위는 0 ~ 1 이고 기본은 1을 사용 한다.
+
+      ![image](https://user-images.githubusercontent.com/92927837/147868742-d49f606c-a337-4660-b688-9a56b826e3b3.png)
+
 
 
 
@@ -257,7 +312,34 @@
 
 **EfficientNet** - 2019년
 
-* 
+* 기존 CNN 모델의 성능을 향상 시키는 방법은 Depth, Width, Resolution 셋 중 하나의 Dimension을 조정하는 것 이었다. 이 중 두 가지 이상을 조정하는 방법도 고려될 수 있지만 이는 매우 사소하게 조정해줘야하는 작업들이 많이 필요하게 되며 그로 인해 최적의 결과를 찾아내지 못하는 경우도 생긴다. 따라서, **ConvNet이 더 좋은 성능을 발휘하게 만드는 이론에 입각한 scale up 방법이 존재**하는지에 대해 의문을 가졌고 사전 조사에 따르면 **Network의 Depth, Width, Resolution 사이의 균형을 맞추는 것**이 성능 향상에 있어서 매우 중요하며 놀랍게도 이들간의 균형은 간단한 상수비로 구해질 수 있다는 것이다. 이러한 관점에 기반하여 간단하면서도 효율적인 '**Compound scaling method'**를 제안한다. 이전의 임의 조정 방식들과 다르게 Network Depth, Width, Resolution를 균등하게 scaling 한다.
+
+* Compound Model Scaling
+
+  * Model scaling에 의한 성능 향상은 baseline network에 매우 의존적이기 때문에 baseline network를 설정하는 데 있어서 neural architecture search (NAS) - AutoML 를 사용하고 발견한 모델이 efficientnet b0이다. 이 b0 모델을 기점으로 세 가지 scaling factor를 동시에 고려하는 **Compound Scaling**을 적용하여 b1~7 모델을 생성했다.
+
+  * 최적의 Layer architecture F_i 발견에 중점을 두는 일반적인 ConvNet 설계와 달리 Model scaling은 baseline network에서 미리 정의된 F_i을 수정 없이 network length (L_i), width (C_i), and/or resolution (H_i, W_i)을 확장 한다. F_i를 고정함으로써 model scaling은 새로운 resource 제약들을 위한 design problem을 간략화 한다. 그러나 여전히 각 layer의 각기 다른 L_i, C_i, H_i, W_i를 탐험할 큰 design space는 남는다. 더 design space를 줄이기 위해 모든 layer가 일정한 비율로 균일하게 확장되어야 한다고 제한한다. 목표는 최적화 문제로 공식화될 수 있는 주어진 resource 제약에 대한 모델 정확도를 최대화 하는 것 이다.
+
+    ![image](https://user-images.githubusercontent.com/92927837/147875738-d117f91c-a427-4be5-a17c-8098bcbbd0b8.png)
+
+    w, d, r은 network width, depth, and resolution scaling의 coefficients이다. F_i, L_i, H_i, W_i, C_i는 baseline network에서 미리 정의된 파라미터이다. 
+
+* Compound Scaling
+
+  * 네트워크 너비, 깊이 또는 해상도의 모든 차원을 확장하면 정확도가 향상되지만 더 큰 모델에서는 정확도 이득이 감소합니다. 더 나은 정확도와 효율성을 추구하려면 ConvNet 확장 중에 네트워크 너비, 깊이 및 해상도의 모든 차원의 균형을 유지하는 것이 중요합니다. 이전에도 이러한 시도가 있었으나 manual tuning  이었다. 이 논문에서는 복합 계수 φ를 사용하여 원칙적으로 네트워크 너비, 깊이 및 해상도를 균일하게 확장하는 새로운 복합 스케일링 방법을 제안합니다.
+
+    ![image](https://user-images.githubusercontent.com/92927837/147876178-0b1b373f-e1b3-4ef6-a47c-4fbb7ab75106.png)
+
+    여기서 α, β, γ는 small grid search로 결정할 수 있는 상수이다. 직관적으로 **φ는 model scaling에 사용할 수 있는 추가 resources를 제어하는 사용자 지정 계수이고 α, β, γ는 이러한 추가 resources를 network width, depth, and resolution에 각각 할당하는 방법을 지정 한다.** 특히, 일반 컨볼루션 연산의 FLOPS는 d, w^2, r^2에 비례 한다. 즉, 네트워크 깊이를 두 배로 늘리면 FLOPS가 두 배가 되지만 네트워크 너비 또는 해상도가 두 배가 되면 FLOPS가 4배 증가 한다.
+
+    컨볼루션 연산은 일반적으로 ConvNet의 계산 비용을 지배하므로 등식 3으로 ConvNet을 확장하면 총 FLOPS가 대략 (α · β^2 · γ^2)^φ만큼 증가 한다. 이 논문에서 우리는 α · β2 · γ2 ≈ 2를 제한하여 새로운 φ에 대해 총 FLOPS가 대략 2^φ만큼 증가할 것이다.
+
+* EfficientNet의 b0는 NAS를 통해 찾아낸 baseline이며 b1 ~ 7은 각각 φ 값이다. 각 φ 값에 따른 α, β, γ를 위 (2), (3) 식을 통해 찾아내어서 최적화한다.
+
+* 추가 검색 필요
+  * NAS - Neural architecture search 란 ?
+  * receptive field 란 ?
+
 
 
 
@@ -280,4 +362,6 @@
 * https://arxiv.org/pdf/1704.04861.pdf - MobileNet paper
 * [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks (arxiv.org)](https://arxiv.org/pdf/1905.11946.pdf)
 * [Depth-wise Convolution and Depth-wise Separable Convolution | by Atul Pandey | Medium](https://medium.com/@zurister/depth-wise-convolution-and-depth-wise-separable-convolution-37346565d4ec)
+* https://arxiv.org/pdf/1905.11946.pdf - EfficientNet
+* https://hoya012.github.io/blog/EfficientNet-review/
 
