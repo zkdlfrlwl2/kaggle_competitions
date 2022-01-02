@@ -20,9 +20,12 @@
 
 
 
-#### 2021 - 12 - 27 ~ 2022 - 01 - 02
+#### 2021 - 12 - 27 ~ 
 
 * WBF 시도
+  * yolov5
+  * yolox
+  * faster rcnn
 * Tracking 시도
 * 이미지 augmentation
   * yolo hyp.yaml 이외의 augmentation 적용
