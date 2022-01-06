@@ -39,3 +39,11 @@
 * yolov5 augmentation 적용법  
   * 대부분 augmentation 기법은 yolov5/utils/datasets.py와 hyp.yaml에 정의되어 있는 듯
   * 추가하려면 datasets.py에 추가하고 hyp.yaml에 인자값도 추가
+* **Validation Metric 계산**
+  * **micro average F2 Score over IoU thresholds in the range of 0.3 to 0.8 with a step size of 0.05**
+  * 바꿧는데도 CV랑 LB가 안맞네. split 방식이 잘못된건가 ..
+    * validation 데이터 분포와 test 데이터 분포가 안맞는건가 
+    * F2 계산으로는 0.15 이상 늘었는데 LB는 오히려 떨어짐
+      * ver12의 LB는 0.497로 가장 높은데 F2는 0.54 정도로 낮았음
+      * ver15의 LB는 0.442인데 F2는 0.67 까지 나왔음
+    * 0.2 말고 4fold로 해봐야겠다.
