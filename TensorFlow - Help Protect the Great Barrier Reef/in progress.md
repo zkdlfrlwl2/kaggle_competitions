@@ -11,10 +11,11 @@
 | yolov5-m ver9  |   0.618   |   0.674   |     0.544     |   0.477   |            |
 | yolov5-m ver10 |   0.617   |   0.661   |     0.538     |   0.452   |            |
 | yolov5-m ver11 |   0.622   |   0.678   |     0.553     |   0.484   |            |
-| yolov5-l ver12 |   0.613   |   0.649   |     0.528     | **0.497** |            |
+| yolov5-l ver12 |   0.613   |   0.649   |     0.528     |   0.497   |            |
 | yolov5-l ver13 |   0.607   |   0.658   |     0.533     |   0.468   |            |
-| yolov5-l ver14 | **0.642** |   0.682   |     0.551     |   0.426   |            |
-| yolov5-m ver15 |   0.636   | **0.688** |   **0.564**   |   0.442   |            |
+| yolov5-l ver14 |   0.642   |   0.682   |     0.551     |   0.426   |            |
+| yolov5-m ver15 |   0.636   |   0.688   |     0.564     |   0.442   |            |
+| yolov5-m ver16 | **0.705** | **0.784** |   **0.678**   | **0.505** |            |
 
 ※ 목표 Public LB 0.60 ↑
 
@@ -231,14 +232,48 @@
 * ver16
   * epochs=50
   * batch=10
-  * patience=15
+  * patience=10
   * yolov5m6.pt
   * ver14 hyp base
   * data split 방식 변경
     * .2 split 대신 5fold 사용
     * val: fold=4
   * result
-    * 
+    * best
+      * CV
+        * 변경된 방법
+          * **conf thres: 0.4**, iou_thres: 0.3: 0.669
+            * mAP@.3: 0.776, mAP@.3:.8: 0.682 
+          * **conf thres: 0.3**, iou_thres: 0.3: 0.768
+            * mAP@.3: 0.783, mAP@.3:.8: 0.682 
+          * **conf thres: 0.2**, iou_thres: 0.3: 0.705
+            * mAP@.3: 0.784, mAP@.3:.8: 0.678
+      * LB
+        * conf thres: 0.4, iou_thres: 0.3: 0.476
+        * conf thres: 0.3, iou_thres: 0.3: 0.494
+        * conf thres: 0.2, iou_thres: 0.3: 0.505
+
+
+
+* ver17
+  * epochs=40
+  * batch=10
+  * patience=5
+  * yolov5m6.pt
+  * ver14 hyp base
+    * 변경점
+      *   lr0 = 0.0032
+      *  lrf = 0.12
+      * momentum = 0.843
+      * weight_decay = 0.00036
+      * warmup_epochs = 2.0
+      * warmup_momentum = 0.5
+      * warmup_bias_lr = 0.05
+  * data split 방식 변경
+    * .2 split 대신 5fold 사용
+    * val: fold=4
+
+
 
 
 
