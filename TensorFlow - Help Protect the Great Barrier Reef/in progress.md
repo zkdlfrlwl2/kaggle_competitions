@@ -15,9 +15,11 @@
 | yolov5-l ver13 | 0.607 | 0.658  |     0.533     |   0.468   |            |
 | yolov5-l ver14 | 0.642 | 0.682  |     0.551     |   0.426   |            |
 | yolov5-m ver15 | 0.636 | 0.688  |     0.564     |   0.442   |            |
-| yolov5-m ver16 | 0.705 | 0.784  |     0.678     | **0.505** |            |
+| yolov5-m ver16 | 0.705 | 0.784  |     0.678     | **0.506** |            |
 | yolov5-m ver17 | 0.633 | 0.792  |     0.677     |   0.463   |            |
-| yolov5-l ver18 |       |        |               |           |            |
+| yolov5-l ver18 | 0.754 | 0.780  |     0.663     |   0.431   |            |
+| yolov5-l ver19 |       |        |               |           |            |
+|                |       |        |               |           |            |
 
 ※ 목표 Public LB 0.60 ↑
 
@@ -180,6 +182,10 @@
     * best
       * CV: 0.613
       * LB: 0.497
+    * **conf thres: 0.2**, iou_thres: 0.3: 0.548, LB: 0.498
+      * mAP@.3: 0.734, mAP@.3:.8: 0.629
+    * **conf thres: 0.15**, iou_thres: 0.3: 0.609, LB: 0.497
+      * mAP@.3: 0.729, mAP@.3:.8: 0.623 
 
 
 
@@ -225,9 +231,10 @@
   * yolov5m6.pt
   * ver14 hyp base
   * result
-    * best
-      * CV: 0.636
-      * LB: 0.442
+    * **conf thres: 0.2**, iou_thres: 0.3: 0.670, LB: 0.446
+      * mAP@.3: 0.759, mAP@.3:.8: 0.656
+    * **conf thres: 0.15**, iou_thres: 0.3: 0.645, LB: 0.442
+      * mAP@.3: 0.755, mAP@.3:.8: 0.649
 
 
 
@@ -254,6 +261,7 @@
         * conf thres: 0.4, iou_thres: 0.3: 0.476
         * conf thres: 0.3, iou_thres: 0.3: 0.494
         * conf thres: 0.2, iou_thres: 0.3: 0.505
+        * conf thres: 0.15, iou_thres: 0.3: 0.506
 
 
 
@@ -302,10 +310,33 @@
   * data split 방식 변경
     * .2 split 대신 5fold 사용
     * val: fold=4
+  * result
+    * best
+      * CV
+        * **conf thres: 0.4**, iou_thres: 0.3: 0.640
+          * mAP@.3: 0.763, mAP@.3:.8: 0.658
+        * **conf thres: 0.3**, iou_thres: 0.3: 0.674
+          * mAP@.3: 0.773, mAP@.3:.8: 0.662
+        * **conf thres: 0.2**, iou_thres: 0.3: 0.754
+          * mAP@.3: 0.78, mAP@.3:.8: 0.663 
+        * **conf thres: 0.15**, iou_thres: 0.3: 0.687
+          * mAP@.3: 0.784, mAP@.3:.8: 0.662
+      * LB
+        * conf thres: 0.4, iou_thres: 0.3: 0.420
+        * conf thres: 0.3, iou_thres: 0.3: 0.429
+        * conf thres: 0.2, iou_thres: 0.3: 0.431
+        * conf thres: 0.15, iou_thres: 0.3: 0.429
 
 
 
+* ver19
+  * ver12와 동일, data split 방식만 fold=4로 변경
 
+
+
+* ver20
+  * LB 가장 잘 나온 모델 config 그대로
+  * iou_t: 0.20 -> 0.30으로 변경 
 
 
 
