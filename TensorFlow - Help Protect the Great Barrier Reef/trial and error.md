@@ -47,3 +47,29 @@
       * ver12의 LB는 0.497로 가장 높은데 F2는 0.54 정도로 낮았음
       * ver15의 LB는 0.442인데 F2는 0.67 까지 나왔음
     * 0.2 말고 4fold로 해봐야겠다.
+
+
+
+#### CV와 LB 사이의 관계성
+
+* model ver15 vs ver16
+  * data split 방식 이외에 model config 동일
+  * conf thres: 0.2, iou_thres: 0.3
+  * CV: 0.670 vs 0.705
+  * LB: 0.446 vs 0.505
+  * CV랑 LB 차이가 너무 크다.
+    * CV 계산하는 방법이 틀렸을 경우
+    *  Data split 하는 방법이 틀렸을 경우
+    *  val dataset과 test dataset의 분포가 다를 경우  
+* val.py conf thres 0.001로 계산
+  * ver12 
+    * mAP@.3:.8 -> 0.533
+    * mAP@.3 -> 0.655
+    * 기존 방법로 계산한 CV -> 0.613
+    * LB -> 0.498
+  * ver15
+    * mAP@.3:.8 -> 0.567
+    * mAP@.3 -> 0.691
+    * 기존 방법로 계산한 CV -> 0.636
+    * LB -> 0.446
+  * 엉망진창이네
