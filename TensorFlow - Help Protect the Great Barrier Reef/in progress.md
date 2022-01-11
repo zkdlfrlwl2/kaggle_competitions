@@ -18,7 +18,7 @@
 | yolov5-m ver16 | 0.705 | 0.784  |     0.678     | **0.506** |            |
 | yolov5-m ver17 | 0.633 | 0.792  |     0.677     |   0.463   |            |
 | yolov5-l ver18 | 0.754 | 0.780  |     0.663     |   0.431   |            |
-| yolov5-l ver19 |       |        |               |           |            |
+| yolov5-l ver19 | 0.702 | 0.769  |     0.665     |   0.506   |            |
 |                |       |        |               |           |            |
 
 ※ 목표 Public LB 0.60 ↑
@@ -330,10 +330,36 @@
 
 * ver19
   * ver12와 동일, data split 방식만 fold=4로 변경
+  * result
+    * CV
+      * best
+        * **conf thres: 0.2**, iou_thres: 0.3, f2 score: 0.702
+          * mAP@.3: 0.769, mAP@.3:.8: 0.665
+        * **conf thres: 0.15**, iou_thres: 0.3, f2 score: 0.719
+          * mAP@.3: 0.769, mAP@.3:.8: 0.662
+      * last
+        * **conf thres: 0.2**, iou_thres: 0.3, f2 score: 0.668(new), 0.639
+          * mAP@.3: 0.761, mAP@.3:.8: 0.657
+        * **conf thres: 0.15**, iou_thres: 0.3, f2 score: 0.686(new), 0.651
+          * mAP@.3: 0.763, mAP@.3:.8: 0.656
+    * LB
+      * best
+        * conf thres: 0.2, iou_thres: 0.3: 0.506
+        * conf thres: 0.15, iou_thres: 0.3: 0.504 
+      * last
+        * conf thres: 0.2, iou_thres: 0.3: 0.478
+        * conf thres: 0.15, iou_thres: 0.3: 0.478
 
 
 
 * ver20
+  * ver19와 동일
+  * metric의 fitness
+    * [0.0 0.0 0.1 0.9] -> [0.0 0.8 0.0 0.2]으로 변경
+
+
+
+* ver21
   * LB 가장 잘 나온 모델 config 그대로
   * iou_t: 0.20 -> 0.30으로 변경 
 
