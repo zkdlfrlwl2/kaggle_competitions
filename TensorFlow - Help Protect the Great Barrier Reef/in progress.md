@@ -19,7 +19,8 @@
 | yolov5-m ver17 | 0.633 | 0.792  |     0.677     |   0.463   |            |
 | yolov5-l ver18 | 0.754 | 0.780  |     0.663     |   0.431   |            |
 | yolov5-l ver19 | 0.702 | 0.769  |     0.665     |   0.506   |            |
-|                |       |        |               |           |            |
+| yolov5-l ver20 | 0.690 | 0.758  |     0.651     |   0.428   |            |
+| yolov5-l ver21 |       |        |               |           |            |
 
 ※ 목표 Public LB 0.60 ↑
 
@@ -356,12 +357,33 @@
   * ver19와 동일
   * metric의 fitness
     * [0.0 0.0 0.1 0.9] -> [0.0 0.8 0.0 0.2]으로 변경
+  * result
+    * CV
+      * best
+        * **conf thres: 0.2**, iou_thres: 0.3, f2 score: 0.690
+          * mAP@.3: 0.758, mAP@.3:.8: 0.651
+        * **conf thres: 0.15**, iou_thres: 0.3, f2 score: 0.722
+          * mAP@.3: 0.764, mAP@.3:.8: 0.652
+    * LB
+      * best
+        * conf thres: 0.2, iou_thres: 0.3: 0.428
+        * conf thres: 0.15, iou_thres: 0.3: 0.423
 
 
 
 * ver21
-  * LB 가장 잘 나온 모델 config 그대로
-  * iou_t: 0.20 -> 0.30으로 변경 
+  * ver19와 동일
+    * 변경점
+      * [0.0, 0.2, 0.0, 0.8]
+      * iou_t: 0.20 -> 0.30 
+      * mixup: 0.5 -> 0.6
+      * hsv_s: 0.7 -> 0.4
+      * hsv_v: 0.3 -> 0.4
+
+
+
+* ver22
+  * 이미지 전처리에 hist 적용
 
 
 
