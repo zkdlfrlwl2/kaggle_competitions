@@ -20,7 +20,8 @@
 | yolov5-l ver18 | 0.754 | 0.780  |     0.663     |   0.431   |            |
 | yolov5-l ver19 | 0.702 | 0.769  |     0.665     |   0.506   |            |
 | yolov5-l ver20 | 0.690 | 0.758  |     0.651     |   0.428   |            |
-| yolov5-l ver21 |       |        |               |           |            |
+| yolov5-l ver21 | 0.729 | 0.772  |     0.642     |   0.491   |            |
+| yolov5-l ver22 |       |        |               |           |            |
 
 ※ 목표 Public LB 0.60 ↑
 
@@ -379,11 +380,22 @@
       * mixup: 0.5 -> 0.6
       * hsv_s: 0.7 -> 0.4
       * hsv_v: 0.3 -> 0.4
+  * result
+    * CV
+      * best
+        * **conf thres: 0.2**, iou_thres: 0.3, f2 score: 0.729
+          * mAP@.3: 0.772, mAP@.3:.8: 0.642
+        * **conf thres: 0.15**, iou_thres: 0.3, f2 score: 0.757
+          * mAP@.3: 0.776, mAP@.3:.8: 0.641
+    * LB
+      * best
+        * conf thres: 0.2, iou_thres: 0.3: 0.491
+        * conf thres: 0.15, iou_thres: 0.3: 0.468
 
 
 
 * ver22
-  * 이미지 전처리에 hist 적용
+  * ver21 그대로 early stopping 없이 epoch 30 시도
 
 
 
