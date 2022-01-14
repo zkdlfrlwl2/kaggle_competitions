@@ -11,16 +11,16 @@
 | yolov5-m ver9  | 0.618 | 0.674  |     0.544     |   0.477   |            |
 | yolov5-m ver10 | 0.617 | 0.661  |     0.538     |   0.452   |            |
 | yolov5-m ver11 | 0.622 | 0.678  |     0.553     |   0.484   |            |
-| yolov5-l ver12 | 0.613 | 0.649  |     0.528     |   0.497   |            |
+| yolov5-l ver12 | 0.613 | 0.649  |     0.528     | **0.497** |            |
 | yolov5-l ver13 | 0.607 | 0.658  |     0.533     |   0.468   |            |
 | yolov5-l ver14 | 0.642 | 0.682  |     0.551     |   0.426   |            |
 | yolov5-m ver15 | 0.636 | 0.688  |     0.564     |   0.442   |            |
 | yolov5-m ver16 | 0.705 | 0.784  |     0.678     | **0.506** |            |
 | yolov5-m ver17 | 0.633 | 0.792  |     0.677     |   0.463   |            |
 | yolov5-l ver18 | 0.754 | 0.780  |     0.663     |   0.431   |            |
-| yolov5-l ver19 | 0.702 | 0.769  |     0.665     |   0.506   |            |
+| yolov5-l ver19 | 0.702 | 0.769  |     0.665     | **0.506** |            |
 | yolov5-l ver20 | 0.690 | 0.758  |     0.651     |   0.428   |            |
-| yolov5-l ver21 | 0.729 | 0.772  |     0.642     |   0.491   |            |
+| yolov5-l ver21 | 0.729 | 0.772  |     0.642     | **0.491** |            |
 | yolov5-l ver22 |       |        |               |           |            |
 
 ※ 목표 Public LB 0.60 ↑
@@ -396,6 +396,24 @@
 
 * ver22
   * ver21 그대로 early stopping 없이 epoch 30 시도
+  * result
+  
+    * CV
+  
+      * best
+        * **conf thres: 0.2**, iou_thres: 0.3, f2 score: 
+          * mAP@.3: , mAP@.3:.8:
+      * last
+        * **conf thres: 0.2**, iou_thres: 0.3, f2 score: 
+          * mAP@.3: , mAP@.3:.8:
+    * LB
+    
+      * best
+        * conf thres: 0.2, iou_thres: 0.3: 
+      * last
+        * conf thres: 0.2, iou_thres: 0.3: 
+  
+  
 
 
 
