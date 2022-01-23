@@ -46,8 +46,21 @@
 
 
 
+### Model
+
+![model](https://user-images.githubusercontent.com/92927837/150665796-3d24af1a-534b-4181-ab72-a0f4379984c3.png)
+
+
+
+### Result
+
+![result](https://user-images.githubusercontent.com/92927837/150665770-0b397e26-b4bb-4192-9394-b13fbfc04b15.png)
+
+
+
 ### Reference
 
 * https://www.kaggle.com/ishandutta/petfinder-data-augmentations-master-notebook
 * https://www.kaggle.com/subinium/petfinder-i-am-featurefinder-eda-notebook
+* https://www.kaggle.com/cdeotte/rapids-svr-boost-17-8
 
