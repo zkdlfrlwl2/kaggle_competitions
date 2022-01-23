@@ -1,8 +1,8 @@
 # Kaggle Competitions
 
-### My kaggle profile - 11/10/2021
+### My kaggle profile - 1/23/2022
 
-![image](https://user-images.githubusercontent.com/92927837/141052207-efedd15a-aacc-4a4a-b5d1-76f2fec5b264.png)
+![image](https://user-images.githubusercontent.com/92927837/150665694-54217605-4741-447d-9987-8c41ae8d38e9.png)
 
 * https://www.kaggle.com/seongwook93
 
@@ -41,28 +41,4 @@
     ![result](https://user-images.githubusercontent.com/92927837/141037296-b0ffbb62-69b7-49c5-800b-ce88c7b1d1b5.png)
 
   * https://www.kaggle.com/c/ventilator-pressure-prediction
-
-* Optiver Realized Volatility Prediction
-
-  * Apply your data science skills to make financial markets better
-
-  * Timeline
-
-    * Training Timeline
-      * June 28, 2021 - Start Date.
-      * September 27, 2021 - Final Submission Deadline.
-    * Forecasting Timeline
-      * January 10, 2022 - Competition End Date
-
-  * Result
-
-    * Training Phase - End
-
-      ![image](https://user-images.githubusercontent.com/92927837/141051093-62c0fbbb-b275-4014-b403-a92200185e0e.png)
-
-    * Forecasting Phase - Ongoing
-
-      ![image](https://user-images.githubusercontent.com/92927837/141051181-742db049-a685-4262-9e38-2b73d2ceff5e.png)
-
-  * https://www.kaggle.com/c/optiver-realized-volatility-prediction
 
