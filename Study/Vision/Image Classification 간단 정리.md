@@ -186,8 +186,15 @@
   * **Pre-Activation**
 
     * ResNet 모델에서는 가중치 초기화 방법으로 He, Xaiver와 같이 잘 알려진 초기화 방법을 사용하지 않았다. 대신 Conv Layer 전에 Batch Normalization를 적용했다. 
-
   
+* **Extra**
+
+  * 레이어의 수가 10개 넘어가는 네트워크에서 Gradient Vanishing & Exploding 문제는 normalization initialization and intermediate normalization layers로 크게 개선되었으나 더 layer를 깊게 쌓으니 수렴하기 시작할 때, training error & test error가 20-layer보다 56-layer가 증가하는 degradation 문제가 발견되었고 이는 ResNet의 Identity mapping with shortcuts으로 해결되었다.
+  * ResNet의 BasicBlock도 101 이렇게 깊게 쌓으면 성능이 향상되었으나 BottleNeck로 바꾼 이유는 BottleNeck도 동일하게 degradation 문제를 해결해주고 더 경제적이었기때문에
+
+
+
+
 
 
 
