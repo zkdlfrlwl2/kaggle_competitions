@@ -21,7 +21,10 @@
 | yolov5-l ver19 | 0.702 | 0.769  |     0.665     | **0.506** |            |
 | yolov5-l ver20 | 0.690 | 0.758  |     0.651     |   0.428   |            |
 | yolov5-l ver21 | 0.729 | 0.772  |     0.642     |   0.491   |            |
-| yolov5-l ver22 |       |        |               |           |            |
+| yolov5-m ver22 |       |        |               |           |            |
+|yolov5-m ver23||||||
+|yolov5-m ver24||||||
+
 ※ 목표 Public LB 0.60 ↑
 
 
@@ -397,6 +400,22 @@
   * yolov5-m6 사용
   * img size 2624, batch 2, epochs 10
   
+
+
+
+* ver23
+  * yolov5-m6 사용
+  * hyp update
+  * img size 2624, batch 2, epochs 11
+  * fold=4
+
+
+
+* ver24
+  * yolov5-m6 사용
+  * ver23 hyp 
+  * img size 2624, batch 2, epochs 11
+  * fold=0
 
 
 
