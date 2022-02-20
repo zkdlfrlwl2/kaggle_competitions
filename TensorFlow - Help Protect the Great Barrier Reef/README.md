@@ -54,6 +54,14 @@
 
 
 
+### Result
+
+![image](https://user-images.githubusercontent.com/92927837/154830795-c95e78bb-f21c-4673-919d-7f32be54ed82.png)
+
+
+
+
+
 ### Reference
 
 * https://www.kaggle.com/c/tensorflow-great-barrier-reef
