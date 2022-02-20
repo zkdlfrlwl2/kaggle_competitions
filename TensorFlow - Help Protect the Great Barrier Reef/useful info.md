@@ -1,3 +1,29 @@
+## Question about CV
+
+### Cross Validation
+
+* Train N Fold models and ensemble (i.e. average) the N test predictions
+  * let's say you have 5-Fold models. Then you split the train data into 5 folds and train 5 models. Each model trains with 80% data and infers the other 20% data. When we combine all the 5x 20% train predictions, we have 1 prediction for each train row (i.e. movie frame). We compute our CV score on this (called OOF). During inference each of the 5 fold models predicts the test data. Then we have 5 predictions for each test row (movie frame). We ensemble these with WBFT.
+* After discovering the best hyper-parameters from CV, train 1 model using 100% data and infer test with 1 model
+  * we start with 5-fold models. We learn that learning rate 0.01 is best with batch size 8 and epochs 7. Afterward we ignore our 5-fold models. Now we train another model (a 6th model), that uses 100% train data. We train it with learning rate 0.01, batch size 8, and 7 epochs. Afterward we use this 1 model to predict the test data. We have 1 prediction for each test frame. This is our submission.
+* Extra
+  * A third approach is to use "approach one", and then just infer 3 of the 5 fold models because of time limitation or something. Then we have 3 predictions for each test frame and use WBFT. And a fourth approach is to train multiple models with 100% train and then average them
+* QnA
+  * Would you agree that using multiple folds during inference should be more robust than the model trained on 100% data with parameters of 5-fold models ?
+    * Using 100% data usually works great and boosts LB in all Kaggle competitions. From the K-Fold CV, we know what epoch to stop at (and what hyperparameters to use), so it won't overfit because CV didn't overfit.
+    * But, sometimes i don't use 100% **when the local fold validation score fluctuate a lot from epoch to epoch**. For example in this comp and CommonLit comp, my local validation score changes a lot from epoch to epoch. In this case, i don't trust using 100% (because i don't know if the stopping epoch will be the right epoch).
+    * Instead I pick a large fold number like 10 or 20. Then you just train 5 folds. Each fold will be trained on 90% or 95% (respectively) of train data. (Note you can use 20-Fold, but only train 5 of the 20 folds and submit 5 folds to LB. This is what our team did in CommonLit comp).
+    * Also note when you train with 100% data, you can still do this 5 times and submit an ensemble of 5 models. The LB score for NN's will usually also increase by training the same NN repeatedly and using different seeds to initialize the layer weights. Also training involves random augmentations and random batches which guarantee that two trained NN will never be the same.
+  * How do you choose the best splitting strategy ? Do you use a fixed baseline model, use it to compute the OOF CV score over different splitting strategies (by video, creating sequences, etc) and choose the one that maximizes this CV score ?
+    * We pick a strategy that mimics the relationship between train and test data. If train and test are just random subsets of some larger population then random K-Fold works. However, if there is a difference between train and test, like for example test uses different videos than train, then we should set up our CV to mimic this. We should put different videos in different CV folds.
+    * Another example might be predicting customer credit scores. If train data and test data have different customers, then we want to keep all rows pertaining(유지, 참조) to one customer within a single fold. To keep things in one fold we use group K Fold.
+    * If the positive target is rare like 1% (or we have multi label and/or multi class and there are rare targets <1%), then we should use stratified K Fold to make sure that each validation fold includes some positive targets.
+    * After choosing our CV, the final test is to submit to LB. If our CV score is approximately equal to our LB score. And if our LB scores goes up when our CV score goes up, then we did a good job. Note that sometimes, the test data has some mystery so the best we can do is have LB go up and down when CV goes up and down.
+
+
+
+
+
 ### Image Problem
 
 * Image Classification
@@ -51,9 +77,15 @@
 
     * F1 Measure는 Precision과 Recall의 중요성을 동일하게 보고 있다. 만약 Recall이 Precision보다 더 중요하다면 F2 Measure를, Precision이 Recall 보다 더 중요하다면 F0.5 Measure를 사용할 수 있다. 여기서 2나 0.5는 베타 값이다.
 
-* Reference
+  
+
+  
+
+  ## Reference
+
   * https://www.quora.com/What-is-the-F2-score-in-machine-learning
   * https://blog.acronym.co.kr/557
+  * https://www.kaggle.com/c/tensorflow-great-barrier-reef/discussion/308027
 
 
 
